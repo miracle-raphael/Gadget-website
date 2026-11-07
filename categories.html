@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shop by Category | e-Global Enterprise</title>
+
+  <meta name="description" content="Explore smartphones, audio devices and gadget accessories at e-Global Enterprise.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/webp" href="images/badge.webp">
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <!-- Supabase library: required for authentication and payment -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    body {
+      font-family: Montserrat, system-ui, sans-serif;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .product-card {
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, .10);
+    }
+
+    .category-chip[aria-pressed="true"] {
+      background: #f97316;
+      color: #111827;
+      border-color: #f97316;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-slate-900 antialiased">
+
+  <!-- HEADER AND NAVIGATION -->
+
+  <section class="relative overflow-visible bg-gradient-to-br from-[#050505] via-[#121212] to-[#2a1608] text-white">
+
+    <div class="pointer-events-none absolute inset-0 opacity-40"
+      style="background-image:linear-gradient(rgba(249,115,22,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(249,115,22,.16) 1px,transparent 1px);background-size:44px 44px">
+    </div>
+
+    <header class="relative z-50 overflow-visible mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+
+      <a href="index.html" class="flex items-center gap-2.5">
+
+        <img src="images/badge.webp" alt="e-Global logo"
+          class="h-11 w-11 rounded-full ring-1 ring-orange-400/40">
+
+        <span class="leading-none">
+          <span class="text-2xl font-bold">
+            <span class="text-orange-400">e</span><span class="text-orange-200">-</span>Global
+          </span>
+
+          <span class="mt-1 block text-[9px] font-bold tracking-[.35em]">
+            ENTERPRISE
+          </span>
+        </span>
+
+      </a>
+
+      <nav class="hidden items-center gap-8 text-sm font-semibold lg:flex">
+        <a href="index.html">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="index.html#arrivals">Special Offers</a>
+        <a href="index.html#foot">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-4 text-lg">
+
+        <button id="userBtn" aria-label="Account" class="rounded-full">
+          👤
+        </button>
+
+        <button id="cartBtn" class="relative" aria-label="Cart">
+          🛒
+          <span id="cartCount"
+            class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-orange-500 text-[10px] font-bold text-black">
+            0
+          </span>
+        </button>
+
+        <button id="menuBtn"
+          class="rounded-lg border border-white/30 px-2.5 py-1 text-sm lg:hidden"
+          aria-label="Open menu">
+          ☰
+        </button>
+
+      </div>
+
+      <div id="accountMenu"
+        class="absolute right-4 top-16 z-[100] hidden w-52 rounded-xl border border-slate-200 bg-white p-3 text-slate-900 shadow-xl">
+
+        <p id="accountName" class="truncate px-2 py-2 text-sm font-bold">
+          Your account
+        </p>
+
+        <button id="logoutBtn" type="button"
+          class="w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-red-600 hover:bg-red-50">
+          Log out
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- MOBILE NAVIGATION -->
+
+    <nav id="mobileMenu"
+      class="relative z-10 hidden flex flex-col gap-3 border-t border-white/10 px-4 py-3 text-sm font-medium lg:hidden">
+
+      <a href="index.html">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="index.html#arrivals">Special Offers</a>
+      <a href="index.html#foot">Contact</a>
+
+    </nav>
+
+  </section>
+
+
+  <main>
+
+    <!-- PAGE INTRO -->
+
+    <section class="relative isolate overflow-hidden bg-gradient-to-br from-[#050505] via-[#17120f] to-[#3a1d0b] text-white">
+
+      <div class="pointer-events-none absolute inset-0 opacity-30"
+        style="background-image:linear-gradient(rgba(249,115,22,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(249,115,22,.18) 1px,transparent 1px);background-size:42px 42px">
+      </div>
+
+      <div class="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+
+        <p class="text-xs font-extrabold uppercase tracking-[.28em] text-orange-400">
+          Find what you need
+        </p>
+
+        <h1 class="mt-4 max-w-2xl text-3xl font-extrabold leading-tight sm:text-5xl">
+          Explore our <span class="text-orange-400">categories.</span>
+        </h1>
+
+        <p class="mt-4 max-w-xl text-sm leading-7 text-white/70 sm:text-base">
+          From everyday essentials to entertainment tech, discover gadgets selected to keep you connected.
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+
+          <a href="#shop"
+            class="rounded-lg bg-orange-500 px-5 py-3 text-sm font-extrabold text-black transition hover:bg-orange-400">
+            Browse products <span aria-hidden="true">→</span>
+          </a>
+
+          <a href="index.html"
+            class="rounded-lg border border-white/30 px-5 py-3 text-sm font-bold transition hover:border-orange-400 hover:text-orange-400">
+            Back to home
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CATEGORY TILES -->
+
+    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+
+      <div class="mb-6 flex items-end justify-between gap-4">
+
+        <div>
+
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-orange-600">
+            Shop your way
+          </p>
+
+          <h2 class="mt-2 text-2xl font-extrabold sm:text-3xl">
+            Browse by category
+          </h2>
+
+        </div>
+
+        <span class="hidden text-xs font-semibold text-slate-500 sm:block">
+          Choose a category to filter products
+        </span>
+
+      </div>
+
+
+      <div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+
+        <button class="category-tile group rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg sm:p-5"
+          data-category="phones">
+
+          <span class="flex h-28 items-center justify-center rounded-xl bg-stone-100 sm:h-36">
+            <img src="images/phones3.webp" alt="Smartphones"
+              class="h-24 max-w-full object-contain transition duration-300 group-hover:scale-105 sm:h-32"
+              loading="lazy">
+          </span>
+
+          <span class="mt-4 block text-sm font-extrabold sm:text-base">
+            Smartphones
+          </span>
+
+          <span class="mt-1 block text-xs text-slate-500">
+            Explore mobile devices
+          </span>
+
+        </button>
+
+
+        <button class="category-tile group rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg sm:p-5"
+          data-category="audio">
+
+          <span class="flex h-28 items-center justify-center rounded-xl bg-orange-50 sm:h-36">
+            <img src="images/headphones.webp" alt="Audio devices"
+              class="h-24 max-w-full object-contain transition duration-300 group-hover:scale-105 sm:h-32"
+              loading="lazy">
+          </span>
+
+          <span class="mt-4 block text-sm font-extrabold sm:text-base">
+            Audio Devices
+          </span>
+
+          <span class="mt-1 block text-xs text-slate-500">
+            Earbuds, speakers & more
+          </span>
+
+        </button>
+
+
+        <button class="category-tile group rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg sm:p-5"
+          data-category="accessories">
+
+          <span class="flex h-28 items-center justify-center rounded-xl bg-amber-50 sm:h-36">
+            <img src="images/speaker.webp" alt="Gadget accessories"
+              class="h-24 max-w-full object-contain transition duration-300 group-hover:scale-105 sm:h-32"
+              loading="lazy">
+          </span>
+
+          <span class="mt-4 block text-sm font-extrabold sm:text-base">
+            Accessories
+          </span>
+
+          <span class="mt-1 block text-xs text-slate-500">
+            Everyday gadget essentials
+          </span>
+
+        </button>
+
+
+        <button class="category-tile group rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg sm:p-5"
+          data-category="computing">
+
+          <span class="flex h-28 items-center justify-center rounded-xl bg-slate-100 sm:h-36">
+            <img src="images/elitebook.webp" alt="Laptops and computing"
+              class="h-24 max-w-full object-contain transition duration-300 group-hover:scale-105 sm:h-32"
+              loading="lazy">
+          </span>
+
+          <span class="mt-4 block text-sm font-extrabold sm:text-base">
+            Computing & Gaming
+          </span>
+
+          <span class="mt-1 block text-xs text-slate-500">
+            Laptops and consoles
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRODUCT LISTING -->
+
+    <section id="shop"
+      class="mx-auto max-w-7xl scroll-mt-24 px-4 pb-16 sm:px-6 lg:px-8">
+
+      <div class="flex flex-col gap-5 border-b border-slate-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
+
+        <div>
+
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-orange-600">
+            The e-Global collection
+          </p>
+
+          <h2 id="sectionTitle" class="mt-2 text-2xl font-extrabold sm:text-3xl">
+            All available products
+          </h2>
+
+          <p id="resultCount" class="mt-2 text-xs text-slate-500">
+            Showing all products
+          </p>
+
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row">
+
+          <label class="sr-only" for="productSearch">
+            Search products
+          </label>
+
+          <input id="productSearch" type="search"
+            placeholder="Search products..."
+            class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-100 sm:w-56">
+
+          <label class="sr-only" for="sortProducts">
+            Sort products
+          </label>
+
+          <select id="sortProducts"
+            class="rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-orange-500">
+
+            <option value="featured">Featured</option>
+            <option value="low">Price: Low to high</option>
+            <option value="high">Price: High to low</option>
+            <option value="az">Name: A to Z</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- FILTER BUTTONS -->
+
+      <div id="categoryFilters" class="mt-5 flex flex-wrap gap-2">
+
+        <button class="category-chip rounded-full border border-slate-300 px-4 py-2 text-xs font-bold transition hover:border-orange-400"
+          data-filter="all" aria-pressed="true">
+          All products
+        </button>
+
+        <button class="category-chip rounded-full border border-slate-300 px-4 py-2 text-xs font-bold transition hover:border-orange-400"
+          data-filter="phones" aria-pressed="false">
+          Smartphones
+        </button>
+
+        <button class="category-chip rounded-full border border-slate-300 px-4 py-2 text-xs font-bold transition hover:border-orange-400"
+          data-filter="audio" aria-pressed="false">
+          Audio
+        </button>
+
+        <button class="category-chip rounded-full border border-slate-300 px-4 py-2 text-xs font-bold transition hover:border-orange-400"
+          data-filter="accessories" aria-pressed="false">
+          Accessories
+        </button>
+
+        <button class="category-chip rounded-full border border-slate-300 px-4 py-2 text-xs font-bold transition hover:border-orange-400"
+          data-filter="computing" aria-pressed="false">
+          Computing & Gaming
+        </button>
+
+      </div>
+
+
+      <!-- PRODUCTS WILL BE RENDERED HERE -->
+
+      <div id="productGrid"
+        class="mt-7 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+      </div>
+
+
+      <!-- EMPTY STATE -->
+
+      <div id="emptyState"
+        class="mt-8 hidden rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-12 text-center">
+
+        <p class="text-3xl">🔎</p>
+
+        <h3 class="mt-3 font-extrabold">
+          No products found
+        </h3>
+
+        <p class="mt-1 text-sm text-slate-500">
+          Try another search or choose a different category.
+        </p>
+
+        <button id="resetFilters"
+          class="mt-4 rounded-lg bg-orange-500 px-5 py-2.5 text-xs font-extrabold text-black hover:bg-orange-400">
+          Show all products
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer id="foot" class="bg-[#0b0b0f] text-white">
+
+    <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+
+      <a href="index.html" class="flex items-center gap-2.5">
+
+        <img src="images/badge.webp" alt=""
+          class="h-9 w-9 rounded-full border border-orange-400/50 object-cover"
+          onerror="this.style.display='none'">
+
+        <span class="font-extrabold">
+          <span class="text-orange-400">e</span>-Global Enterprise
+        </span>
+
+      </a>
+
+      <p class="text-xs text-white/60">
+        Phones, audio, accessories and more. © 2026 e-Global Enterprise.
+      </p>
+
+      <a href="https://wa.me/2349126406370"
+        class="text-xs font-bold text-orange-400 hover:text-orange-300">
+        Chat with us on WhatsApp →
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- CART DRAWER -->
+
+  <div id="cartOverlay"
+    class="fixed inset-0 z-50 hidden justify-end bg-black/50">
+
+    <aside class="flex h-full w-full max-w-sm flex-col bg-white shadow-2xl">
+
+      <div class="flex items-center justify-between border-b px-5 py-4">
+
+        <h2 class="text-lg font-bold">
+          Your Cart
+        </h2>
+
+        <button id="cartClose" class="text-xl">
+          ✕
+        </button>
+
+      </div>
+
+
+      <div class="flex-1 overflow-y-auto px-5">
+
+        <div id="cartEmpty"
+          class="flex h-full flex-col items-center justify-center text-center text-slate-500">
+
+          <span class="text-5xl">🛒</span>
+
+          <p class="mt-3 font-semibold">
+            Your cart is empty
+          </p>
+
+        </div>
+
+        <div id="cartList"></div>
+
+      </div>
+
+
+      <div id="cartFoot" class="hidden border-t px-5 py-4">
+
+        <p id="cartShip"
+          class="mb-3 rounded-lg bg-orange-50 px-3 py-2 text-xs font-medium text-orange-800">
+        </p>
+
+        <div class="flex justify-between text-sm">
+
+          <span class="text-slate-500">
+            Subtotal
+          </span>
+
+          <b id="cartTotal" class="text-lg"></b>
+
+        </div>
+
+        <button id="checkoutBtn"
+          class="mt-4 w-full rounded-lg bg-orange-500 py-3 text-sm font-bold text-black hover:bg-orange-400">
+          Proceed to Payment
+        </button>
+
+        <button id="clearCart"
+          class="mt-2 w-full py-2 text-xs font-semibold text-slate-500">
+          Clear cart
+        </button>
+
+        <p class="mt-2 text-center text-[10px] text-slate-500">
+          Secure checkout powered by Paystack.
+        </p>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+
+  <!-- AUTHENTICATION MODAL -->
+
+  <div id="authModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4">
+
+    <div class="relative max-h-[92vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
+
+      <button id="authClose"
+        class="absolute right-4 top-4 text-xl text-slate-400">
+        ✕
+      </button>
+
+      <h2 id="authTitle" class="text-2xl font-extrabold">
+        Welcome back
+      </h2>
+
+      <p id="authSub" class="mt-1 text-sm text-slate-500">
+        Log in to your account.
+      </p>
+
+
+      <div class="mt-5 flex gap-1 rounded-xl bg-slate-100 p-1">
+
+        <button id="tabLogin"
+          class="flex-1 rounded-lg bg-orange-500 py-2 text-sm font-bold">
+          Login
+        </button>
+
+        <button id="tabSignup"
+          class="flex-1 rounded-lg py-2 text-sm font-bold">
+          Sign Up
+        </button>
+
+      </div>
+
+
+      <!-- LOGIN FORM -->
+
+      <form id="loginForm" class="mt-5 space-y-4">
+
+        <input name="email" type="email" required
+          placeholder="Email address"
+          class="w-full rounded-lg border px-4 py-3 text-sm">
+
+        <input name="password" type="password" required minlength="6"
+          placeholder="Password"
+          class="w-full rounded-lg border px-4 py-3 text-sm">
+
+        <p id="loginErr"
+          class="hidden rounded bg-red-50 p-2 text-xs text-red-600">
+        </p>
+
+        <button
+          class="w-full rounded-lg bg-orange-500 py-3 text-sm font-bold">
+          Log In
+        </button>
+
+      </form>
+
+
+      <!-- SIGNUP FORM -->
+
+      <form id="signupForm" class="mt-5 hidden space-y-4">
+
+        <input name="fullname" required minlength="2"
+          placeholder="Full name"
+          class="w-full rounded-lg border px-4 py-3 text-sm">
+
+        <input name="email" type="email" required
+          placeholder="Email address"
+          class="w-full rounded-lg border px-4 py-3 text-sm">
+
+        <input name="password" type="password" required minlength="6"
+          placeholder="Password (at least 6 characters)"
+          class="w-full rounded-lg border px-4 py-3 text-sm">
+
+        <input name="confirm" type="password" required minlength="6"
+          placeholder="Confirm password"
+          class="w-full rounded-lg border px-4 py-3 text-sm">
+
+        <label class="flex items-start gap-2 text-xs text-slate-600">
+
+          <input name="terms" type="checkbox" required>
+
+          I agree to the Terms of Service and Privacy Policy.
+
+        </label>
+
+        <p id="signupErr"
+          class="hidden rounded bg-red-50 p-2 text-xs text-red-600">
+        </p>
+
+        <button
+          class="w-full rounded-lg bg-orange-500 py-3 text-sm font-bold">
+          Create Account
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST NOTIFICATION -->
+
+  <div id="toast" role="status" aria-live="polite"
+    class="pointer-events-none fixed bottom-5 left-1/2 z-[60] -translate-x-1/2 translate-y-3 rounded-full bg-black px-5 py-3 text-xs font-semibold text-white opacity-0 shadow-xl transition duration-300">
+  </div>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    /* =========================================
+       SUPABASE CONFIGURATION
+    ========================================= */
+
+    const SUPABASE_URL = "https://nrsluftpnmmriqldxcfb.supabase.co";
+
+    const SUPABASE_ANON_KEY = "sb_publishable_DIHR2ju_34YXFrMTCnpL5Q_Q--vLKng";
+
+    const PAYMENT_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/paystack`;
+
+    const sb = window.supabase?.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+
+    /* =========================================
+       PRODUCT DATA
+    ========================================= */
+
+    const products = [
+
+      {
+        id: "soundpro-x1",
+        name: "SoundPro X1",
+        detail: "Wireless Earbuds",
+        price: 19500,
+        image: "images/headphones.webp",
+        badge: "NEW",
+        category: "audio"
+      },
+
+      {
+        id: "pouches",
+        name: "Premium Pouches",
+        detail: "Smartphone Accessories",
+        price: 12500,
+        image: "images/speaker.webp",
+        badge: "POPULAR",
+        category: "accessories"
+      },
+
+      {
+        id: "boommate",
+        name: "BoomMate",
+        detail: "Portable Bluetooth Speaker",
+        price: 45000,
+        image: "images/speaker.webp",
+        badge: "SALE",
+        category: "audio"
+      },
+
+      {
+        id: "flagship-phones",
+        name: "Flagship Phones",
+        detail: "Samsung • iPhone • Pixel",
+        price: 850000,
+        image: "images/phones3.webp",
+        badge: "HOT",
+        category: "phones"
+      }
+
+    ];
+
+
+    /* =========================================
+       SHARED HELPER FUNCTIONS
+    ========================================= */
+
+    const money = n =>
+      new Intl.NumberFormat("en-NG", {
+        style: "currency",
+        currency: "NGN",
+        maximumFractionDigits: 0
+      }).format(n);
+
+
+    const toast = msg => {
+
+      const t = document.getElementById("toast");
+
+      t.textContent = msg;
+
+      t.classList.remove("opacity-0");
+
+      clearTimeout(window.toastTimer);
+
+      window.toastTimer = setTimeout(
+        () => t.classList.add("opacity-0"),
+        2800
+      );
+
+    };
+
+
+    const showErr = (id, msg) => {
+
+      const el = document.getElementById(id);
+
+      el.textContent = msg;
+
+      el.classList.toggle("hidden", !msg);
+
+    };
+
+
+    const validEmail = v =>
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+
+    const productById = id =>
+      products.find(p => p.id === id);
+
+
+    /* =========================================
+       CART — ALIGNED WITH HOMEPAGE
+    ========================================= */
+
+    let cart = {};
+
+    try {
+
+      cart = JSON.parse(localStorage.getItem("eg_cart")) || {};
+
+    } catch {
+
+      cart = {};
+
+    }
+
+
+    // Remove invalid cart items
+
+    Object.keys(cart).forEach(id => {
+
+      if (
+        !productById(id) ||
+        !Number.isInteger(cart[id]) ||
+        cart[id] < 1
+      ) {
+
+        delete cart[id];
+
+      }
+
+    });
+
+
+    const cartOverlay = document.getElementById("cartOverlay");
+
+
+    // Render cart
+
+    function renderCart() {
+
+      const ids = Object.keys(cart);
+
+      const count = ids.reduce(
+        (sum, id) => sum + cart[id],
+        0
+      );
+
+      const total = ids.reduce(
+        (sum, id) => sum + productById(id).price * cart[id],
+        0
+      );
+
+
+      document.getElementById("cartCount").textContent = count;
+
+      document.getElementById("cartEmpty")
+        .classList.toggle("hidden", count > 0);
+
+      document.getElementById("cartFoot")
+        .classList.toggle("hidden", count === 0);
+
+      document.getElementById("cartTotal").textContent = money(total);
+
+      document.getElementById("cartShip").textContent =
+        "Delivery fee, if applicable, will be confirmed before dispatch.";
+
+
+      document.getElementById("cartList").innerHTML = ids.map(id => {
+
+        const p = productById(id);
+
+        return `
+
+          <div class="flex items-center gap-3 border-b py-3">
+
+            <img src="${p.image}" alt=""
+              class="h-14 w-14 object-contain">
+
+            <div class="min-w-0 flex-1">
+
+              <p class="truncate text-sm font-bold">
+                ${p.name}
+              </p>
+
+              <p class="text-xs text-slate-500">
+                ${money(p.price)}
+              </p>
+
+              <div class="mt-2 flex items-center gap-3 text-sm">
+
+                <button data-action="dec" data-id="${id}">
+                  −
+                </button>
+
+                <span>${cart[id]}</span>
+
+                <button data-action="inc" data-id="${id}">
+                  +
+                </button>
+
+              </div>
+
+            </div>
+
+            <button data-action="remove" data-id="${id}"
+              class="text-xs text-red-500">
+              Remove
+            </button>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+
+      localStorage.setItem("eg_cart", JSON.stringify(cart));
+
+    }
+
+
+    // Add products to cart
+    // IMPORTANT: category page uses productGrid, not prodGrid.
+
+    document.getElementById("productGrid").addEventListener("click", e => {
+
+      const b = e.target.closest("[data-add]");
+
+      if (!b) return;
+
+      const id = b.dataset.add;
+
+      if (!productById(id)) return;
+
+      cart[id] = (cart[id] || 0) + 1;
+
+      renderCart();
+
+      toast("Added to cart");
+
+    });
+
+
+    // Increase, decrease and remove products
+
+    document.getElementById("cartList").addEventListener("click", e => {
+
+      const b = e.target.closest("[data-action]");
+
+      if (!b) return;
+
+      const id = b.dataset.id;
+
+      if (!cart[id]) return;
+
+      if (b.dataset.action === "inc") {
+        cart[id]++;
+      }
+
+      if (b.dataset.action === "dec") {
+
+        cart[id]--;
+
+        if (cart[id] <= 0) {
+          delete cart[id];
+        }
+
+      }
+
+      if (b.dataset.action === "remove") {
+        delete cart[id];
+      }
+
+      renderCart();
+
+    });
+
+
+    // Open cart
+
+    document.getElementById("cartBtn").onclick = () => {
+
+      cartOverlay.classList.replace("hidden", "flex");
+
+    };
+
+
+    // Close cart
+
+    function closeCart() {
+
+      cartOverlay.classList.add("hidden");
+
+      cartOverlay.classList.remove("flex");
+
+    }
+
+
+    document.getElementById("cartClose").onclick = closeCart;
+
+
+    cartOverlay.addEventListener("click", e => {
+
+      if (e.target === cartOverlay) {
+        closeCart();
+      }
+
+    });
+
+
+    // Clear cart
+
+    document.getElementById("clearCart").onclick = () => {
+
+      cart = {};
+
+      renderCart();
+
+    };
+
+
+    /* =========================================
+       CATEGORY PRODUCT DISPLAY AND FILTERING
+    ========================================= */
+
+    let activeCategory = "all";
+
+
+    const productGrid = document.getElementById("productGrid");
+
+    const searchInput = document.getElementById("productSearch");
+
+    const sortSelect = document.getElementById("sortProducts");
+
+    const emptyState = document.getElementById("emptyState");
+
+
+    function renderProducts() {
+
+      const searchTerm = searchInput.value.trim().toLowerCase();
+
+
+      let visibleProducts = products.filter(product => {
+
+        const matchesCategory =
+          activeCategory === "all" ||
+          product.category === activeCategory;
+
+        const matchesSearch =
+          `${product.name} ${product.detail} ${product.category}`
+            .toLowerCase()
+            .includes(searchTerm);
+
+        return matchesCategory && matchesSearch;
+
+      });
+
+
+      if (sortSelect.value === "low") {
+
+        visibleProducts.sort((a, b) => a.price - b.price);
+
+      }
+
+      if (sortSelect.value === "high") {
+
+        visibleProducts.sort((a, b) => b.price - a.price);
+
+      }
+
+      if (sortSelect.value === "az") {
+
+        visibleProducts.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+
+      }
+
+
+      const categoryNames = {
+
+        phones: "Smartphones",
+
+        audio: "Audio devices",
+
+        accessories: "Accessories",
+
+        computing: "Computing & Gaming"
+
+      };
+
+
+      document.getElementById("sectionTitle").textContent =
+
+        activeCategory === "all"
+          ? "All available products"
+          : categoryNames[activeCategory];
+
+
+      document.getElementById("resultCount").textContent =
+
+        `Showing ${visibleProducts.length} ${
+          visibleProducts.length === 1 ? "product" : "products"
+        }`;
+
+
+      productGrid.innerHTML = visibleProducts.map(product => `
+
+        <article class="product-card flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 sm:p-4">
+
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-slate-50 p-3 sm:h-48">
+
+            <span class="absolute left-2 top-2 rounded bg-orange-500 px-2 py-1 text-[9px] font-extrabold text-black">
+              ${product.badge}
+            </span>
+
+            <img src="${product.image}" alt="${product.name}"
+              class="h-full w-full object-contain" loading="lazy">
+
+          </div>
+
+
+          <div class="flex flex-1 flex-col">
+
+            <p class="mt-3 text-[10px] font-bold uppercase tracking-wider text-orange-600">
+              ${product.category}
+            </p>
+
+            <h3 class="mt-1 text-sm font-extrabold leading-5">
+              ${product.name}
+            </h3>
+
+            <p class="mt-1 text-xs text-slate-500">
+              ${product.detail}
+            </p>
+
+            <p class="mb-3 mt-3 text-sm font-extrabold sm:text-base">
+              ${money(product.price)}
+            </p>
+
+            <button data-add="${product.id}"
+              class="mt-auto rounded-lg bg-orange-500 px-3 py-3 text-xs font-extrabold text-black transition hover:bg-orange-400">
+
+              Add to cart <span aria-hidden="true">＋</span>
+
+            </button>
+
+          </div>
+
+        </article>
+
+      `).join("");
+
+
+      emptyState.classList.toggle(
+        "hidden",
+        visibleProducts.length !== 0
+      );
+
+      productGrid.classList.toggle(
+        "hidden",
+        visibleProducts.length === 0
+      );
+
+    }
+
+
+    // Select category
+
+    function setCategory(category) {
+
+      activeCategory = category;
+
+      document.querySelectorAll("[data-filter]").forEach(button => {
+
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.filter === category)
+        );
+
+      });
+
+
+      renderProducts();
+
+
+      document.getElementById("shop").scrollIntoView({
+
+        behavior: "smooth"
+
+      });
+
+    }
+
+
+    // Category filter buttons
+
+    document.getElementById("categoryFilters").addEventListener("click", event => {
+
+      const button = event.target.closest("[data-filter]");
+
+      if (button) {
+
+        setCategory(button.dataset.filter);
+
+      }
+
+    });
+
+
+    // Category tiles
+
+    document.querySelectorAll(".category-tile").forEach(tile => {
+
+      tile.addEventListener("click", () => {
+
+        setCategory(tile.dataset.category);
+
+      });
+
+    });
+
+
+    // Search and sorting
+
+    searchInput.addEventListener("input", renderProducts);
+
+    sortSelect.addEventListener("change", renderProducts);
+
+
+    // Reset filters
+
+    document.getElementById("resetFilters").addEventListener("click", () => {
+
+      searchInput.value = "";
+
+      sortSelect.value = "featured";
+
+      setCategory("all");
+
+    });
+
+
+    /* =========================================
+       MOBILE NAVIGATION
+    ========================================= */
+
+    document.getElementById("menuBtn").onclick = () =>
+
+      document.getElementById("mobileMenu")
+        .classList.toggle("hidden");
+
+
+    /* =========================================
+       AUTHENTICATION — SAME AS HOMEPAGE
+    ========================================= */
+
+    const authModal = document.getElementById("authModal");
+
+    const userBtn = document.getElementById("userBtn");
+
+    const accountMenu = document.getElementById("accountMenu");
+
+
+    let currentUser = null;
+
+
+    function setAuthTab(tab) {
+
+      const login = tab === "login";
+
+
+      document.getElementById("loginForm")
+        .classList.toggle("hidden", !login);
+
+      document.getElementById("signupForm")
+        .classList.toggle("hidden", login);
+
+
+      document.getElementById("authTitle").textContent =
+
+        login ? "Welcome back" : "Create your account";
+
+
+      document.getElementById("authSub").textContent =
+
+        login
+          ? "Log in to your e-Global account."
+          : "Create an account to shop with e-Global";
+
+
+      document.getElementById("tabLogin").className =
+
+        "flex-1 rounded-lg py-2 text-sm font-bold " +
+        (login ? "bg-orange-500" : "");
+
+
+      document.getElementById("tabSignup").className =
+
+        "flex-1 rounded-lg py-2 text-sm font-bold " +
+        (!login ? "bg-orange-500" : "");
+
+    }
+
+
+    function openAuth(tab = "login") {
+
+      accountMenu.classList.add("hidden");
+
+      setAuthTab(tab);
+
+      authModal.classList.remove("hidden");
+
+      authModal.classList.add("flex");
+
+    }
+
+
+    function closeAuth() {
+
+      authModal.classList.add("hidden");
+
+      authModal.classList.remove("flex");
+
+    }
+
+
+    document.getElementById("authClose").onclick = closeAuth;
+
+
+    authModal.addEventListener("click", e => {
+
+      if (e.target === authModal) {
+        closeAuth();
+      }
+
+    });
+
+
+    document.getElementById("tabLogin").onclick = () =>
+      setAuthTab("login");
+
+
+    document.getElementById("tabSignup").onclick = () =>
+      setAuthTab("signup");
+
+
+    function updateUser(user) {
+
+      currentUser = user;
+
+
+      userBtn.textContent = user
+
+        ? (user.user_metadata?.full_name || user.email || "U")
+            .charAt(0)
+            .toUpperCase()
+
+        : "👤";
+
+
+      userBtn.className = user
+
+        ? "flex h-8 w-8 items-center justify-center rounded-full bg-orange-500 text-sm font-bold text-black"
+
+        : "rounded-full";
+
+
+      document.getElementById("accountName").textContent =
+
+        user
+          ? (user.user_metadata?.full_name || user.email)
+          : "Your account";
+
+    }
+
+
+    userBtn.onclick = () => {
+
+      if (!currentUser) {
+        return openAuth("login");
+      }
+
+      accountMenu.classList.toggle("hidden");
+
+    };
+
+
+    document.addEventListener("click", e => {
+
+      if (
+        !accountMenu.contains(e.target) &&
+        e.target !== userBtn
+      ) {
+
+        accountMenu.classList.add("hidden");
+
+      }
+
+    });
+
+
+    // Logout
+
+    document.getElementById("logoutBtn").onclick = async () => {
+
+      const { error } = await sb.auth.signOut({
+        scope: "local"
+      });
+
+      if (error) {
+        return toast(error.message);
+      }
+
+      updateUser(null);
+
+      accountMenu.classList.add("hidden");
+
+      toast("You have been logged out");
+
+    };
+
+
+    // Login
+
+    document.getElementById("loginForm").onsubmit = async e => {
+
+      e.preventDefault();
+
+
+      if (!sb) {
+
+        return showErr(
+          "loginErr",
+          "Authentication service is unavailable. Refresh and try again."
+        );
+
+      }
+
+
+      const f = e.target;
+
+      const email = f.email.value.trim();
+
+      const password = f.password.value;
+
+
+      showErr("loginErr", "");
+
+
+      const { data, error } = await sb.auth.signInWithPassword({
+
+        email,
+
+        password
+
+      });
+
+
+      if (error) {
+
+        return showErr("loginErr", error.message);
+
+      }
+
+
+      updateUser(data.user);
+
+      f.reset();
+
+      closeAuth();
+
+      toast("Welcome back");
+
+    };
+
+
+    // Signup
+
+    document.getElementById("signupForm").onsubmit = async e => {
+
+      e.preventDefault();
+
+
+      const f = e.target;
+
+
+      if (!sb) {
+
+        return showErr(
+          "signupErr",
+          "Authentication service is unavailable. Refresh and try again."
+        );
+
+      }
+
+
+      if (f.password.value !== f.confirm.value) {
+
+        return showErr(
+          "signupErr",
+          "Your passwords do not match."
+        );
+
+      }
+
+
+      showErr("signupErr", "");
+
+
+      const { data, error } = await sb.auth.signUp({
+
+        email: f.email.value.trim(),
+
+        password: f.password.value,
+
+        options: {
+
+          data: {
+            full_name: f.fullname.value.trim()
+          },
+
+          emailRedirectTo: location.origin
+
+        }
+
+      });
+
+
+      if (error) {
+
+        return showErr("signupErr", error.message);
+
+      }
+
+
+      f.reset();
+
+      closeAuth();
+
+
+      if (data.session) {
+
+        updateUser(data.user);
+
+        toast("Your account has been created");
+
+      } else {
+
+        toast("Check your email to confirm your account");
+
+      }
+
+    };
+
+
+    // Restore existing login session
+
+    if (sb) {
+
+      sb.auth.getSession().then(({ data }) => {
+
+        updateUser(data.session?.user || null);
+
+      });
+
+
+      sb.auth.onAuthStateChange((_event, session) => {
+
+        updateUser(session?.user || null);
+
+      });
+
+    }
+
+
+    /* =========================================
+       PAYSTACK CHECKOUT — SAME AS HOMEPAGE
+    ========================================= */
+
+    document.getElementById("checkoutBtn").onclick = async () => {
+
+      const items = Object.entries(cart).map(([id, qty]) => ({
+        id,
+        qty
+      }));
+
+
+      if (!items.length) {
+        return toast("Your cart is empty");
+      }
+
+
+      if (!sb) {
+        return toast("Payment service is unavailable. Please try again later.");
+      }
+
+
+      const email = currentUser?.email;
+
+
+      if (!email) {
+
+        closeCart();
+
+        openAuth("login");
+
+        return toast("Please log in before checkout");
+
+      }
+
+
+      const btn = document.getElementById("checkoutBtn");
+
+      btn.disabled = true;
+
+      btn.textContent = "Preparing secure checkout…";
+
+
+      try {
+
+        const { data: { session } } = await sb.auth.getSession();
+
+
+        const response = await fetch(PAYMENT_FUNCTION_URL, {
+
+          method: "POST",
+
+          headers: {
+
+            "Content-Type": "application/json",
+
+            "Authorization": `Bearer ${session.access_token}`,
+
+            "apikey": SUPABASE_ANON_KEY
+
+          },
+
+          body: JSON.stringify({
+
+            action: "initialize",
+
+            items
+
+          })
+
+        });
+
+
+        const result = await response.json();
+
+
+        if (!response.ok) {
+
+          throw new Error(result.error || "Could not start payment");
+
+        }
+
+
+        if (!result.authorization_url) {
+
+          throw new Error("Payment link was not returned");
+
+        }
+
+
+        location.href = result.authorization_url;
+
+
+      } catch (err) {
+
+        toast(err.message || "Payment could not be started");
+
+      } finally {
+
+        btn.disabled = false;
+
+        btn.textContent = "Proceed to Payment";
+
+      }
+
+    };
+
+
+    /* =========================================
+       PAYMENT RETURN — VERIFY WITH BACKEND
+    ========================================= */
+
+    (async () => {
+
+      const params = new URLSearchParams(location.search);
+
+      const reference = params.get("reference");
+
+
+      if (!reference) return;
+
+
+      history.replaceState({}, document.title, location.pathname);
+
+
+      if (!sb) {
+
+        toast("Unable to verify payment. Contact support.");
+
+        return;
+
+      }
+
+
+      try {
+
+        const { data: { session } } = await sb.auth.getSession();
+
+
+        if (!session) {
+
+          throw new Error("Please log in to verify this order.");
+
+        }
+
+
+        const res = await fetch(PAYMENT_FUNCTION_URL, {
+
+          method: "POST",
+
+          headers: {
+
+            "Content-Type": "application/json",
+
+            "Authorization": `Bearer ${session.access_token}`,
+
+            "apikey": SUPABASE_ANON_KEY
+
+          },
+
+          body: JSON.stringify({
+
+            action: "verify",
+
+            reference
+
+          })
+
+        });
+
+
+        const result = await res.json();
+
+
+        if (!res.ok || result.status !== "success") {
+
+          throw new Error(result.error || "Payment was not confirmed.");
+
+        }
+
+
+        cart = {};
+
+        renderCart();
+
+        toast("Payment confirmed. Thank you for your order!");
+
+
+      } catch (err) {
+
+        toast(err.message);
+
+      }
+
+    })();
+
+
+    /* =========================================
+       CLOSE MODALS WITH ESCAPE
+    ========================================= */
+
+    document.addEventListener("keydown", e => {
+
+      if (e.key === "Escape") {
+
+        closeCart();
+
+        closeAuth();
+
+        accountMenu.classList.add("hidden");
+
+      }
+
+    });
+
+
+    /* =========================================
+       INITIALIZE PAGE
+    ========================================= */
+
+    renderProducts();
+
+    renderCart();
+
+  </script>
+
+</body>
+</html>
