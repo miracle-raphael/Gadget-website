@@ -1,533 +1,260 @@
 <!DOCTYPE html>
-<html lang="en" style="box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>e-Global Enterprise — Phones, Pouches & Consoles</title>
+<title>e-Global Enterprise — Phones, Audio & Consoles</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{font-family:Montserrat,system-ui,sans-serif}button,a{ -webkit-tap-highlight-color:transparent}
+</style>
 </head>
-<body class="bg-white font-sans text-slate-900 antialiased">
-
-<!-- HERO + NAV -->
+<body class="bg-white text-slate-900 antialiased">
 <section class="relative overflow-hidden bg-gradient-to-br from-[#050505] via-[#121212] to-[#2a1608] text-white">
-  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-    <div class="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(249,115,22,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.16)_1px,transparent_1px)] [background-size:44px_44px] [-webkit-mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_70%)] [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_70%)]"></div>
-    <div data-par="-18" class="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-orange-500/30 blur-3xl"></div>
-    <div data-par="14" class="absolute -bottom-24 left-1/4 h-80 w-80 rounded-full bg-amber-500/20 blur-3xl"></div>
-    <div data-par="-26" class="absolute right-[12%] top-1/4 h-[26rem] w-[26rem] rounded-full bg-orange-400/20 blur-3xl"></div>
-    <div class="absolute -top-16 right-1/3 h-[150%] w-28 rotate-[22deg] bg-gradient-to-b from-white/30 via-orange-200/10 to-transparent blur-2xl"></div>
-    <div class="absolute right-8 top-24 hidden rotate-12 md:block"><div data-par="30" class="h-28 w-28 rounded-3xl border border-white/25 bg-white/10 shadow-[0_10px_40px_rgba(249,115,22,0.3)] backdrop-blur-md"></div></div>
-    <div class="absolute bottom-16 left-[46%] hidden -rotate-12 md:block"><div data-par="-34" class="h-16 w-16 rounded-2xl border border-white/25 bg-white/10 backdrop-blur-md"></div></div>
-    <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-orange-400/60 to-transparent"></div>
-  </div>
+  <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image:linear-gradient(rgba(249,115,22,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(249,115,22,.16) 1px,transparent 1px);background-size:44px 44px"></div>
   <header class="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-    <a href="#" class="flex items-center gap-2.5"><img data-img="badge" alt="e-Global Enterprise logo" class="h-11 w-11 rounded-full ring-1 ring-orange-400/40"><span class="flex flex-col leading-none font-['Montserrat',system-ui,sans-serif]"><span class="text-[1.7rem] font-semibold tracking-tight"><span class="text-[#f58a2a]">e</span><span class="text-[#f6b08a]">-</span><span class="text-white">Global</span></span><span class="mt-1.5 flex justify-between pl-[5%] text-[0.5rem] font-bold text-white/90"><span>E</span><span>N</span><span>T</span><span>E</span><span>R</span><span>P</span><span>R</span><span>I</span><span>S</span><span>E</span></span></span></a>
-    <nav class="hidden items-center gap-8 text-sm font-medium lg:flex">
-      <a href="#" class="border-b-2 border-orange-400 pb-1">Home</a>
-      <a href="#picks" class="hover:text-orange-400">Shop</a>
-      <a href="#arrivals" class="hover:text-orange-400">New Arrivals</a>
-      <a href="#picks" class="hover:text-orange-400">Top Deals</a>
-      <a href="#foot" class="hover:text-orange-400">Contact</a>
-    </nav>
+    <a href="#" class="flex items-center gap-2.5"><img src="images/badge.webp" alt="e-Global logo" class="h-11 w-11 rounded-full ring-1 ring-orange-400/40"><span class="leading-none"><span class="text-2xl font-bold"><span class="text-orange-400">e</span><span class="text-orange-200">-</span>Global</span><span class="mt-1 block text-[9px] font-bold tracking-[.35em]">ENTERPRISE</span></span></a>
+    <nav class="hidden items-center gap-8 text-sm font-semibold lg:flex"><a href="#">Home</a><a href="#picks">Shop</a><a href="#arrivals">New Arrivals</a><a href="#foot">Contact</a></nav>
     <div class="flex items-center gap-4 text-lg">
-      <span>🔍</span><button id="userBtn" aria-label="Account">👤</button>
-      <button id="cartBtn" class="relative" aria-label="Cart">🛒<span id="cartCount" class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#f97316] text-[10px] font-bold text-[#0b0b0f]">0</span></button>
-      <button id="menuBtn" class="ml-1 rounded-lg border border-white/30 px-2.5 py-1 text-sm lg:hidden" aria-label="Menu">☰</button>
+      <button id="userBtn" aria-label="Account" class="rounded-full">👤</button>
+      <button id="cartBtn" class="relative" aria-label="Cart">🛒<span id="cartCount" class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-orange-500 text-[10px] font-bold text-black">0</span></button>
+      <button id="menuBtn" class="rounded-lg border border-white/30 px-2.5 py-1 text-sm lg:hidden" aria-label="Open menu">☰</button>
+    </div>
+    <div id="accountMenu" class="absolute right-4 top-16 z-40 hidden w-52 rounded-xl border border-slate-200 bg-white p-3 text-slate-900 shadow-xl">
+      <p id="accountName" class="truncate px-2 py-2 text-sm font-bold">Your account</p>
+      <button id="logoutBtn" type="button" class="w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-red-600 hover:bg-red-50">Log out</button>
     </div>
   </header>
-  <div id="mobileMenu" class="relative z-10 hidden flex-col gap-3 border-t border-white/10 px-4 py-3 text-sm font-medium lg:hidden">
-    <a href="#">Home</a><a href="#picks">Shop</a><a href="#arrivals">New Arrivals</a><a href="#picks">Top Deals</a><a href="#foot">Contact</a>
-  </div>
-
+  <nav id="mobileMenu" class="relative z-10 hidden flex-col gap-3 border-t border-white/10 px-4 py-3 text-sm font-medium lg:hidden"><a href="#">Home</a><a href="#picks">Shop</a><a href="#arrivals">New Arrivals</a><a href="#foot">Contact</a></nav>
   <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-8 px-4 pb-16 pt-10 md:grid-cols-2 md:pb-20 md:pt-14">
-    <div data-r class="opacity-0 translate-y-8 transition duration-700 ease-out">
-      <p class="text-xs font-semibold uppercase tracking-widest text-orange-400">Enhance your gadget style</p>
-      <h1 class="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">Smart Tech.<br>Better Everyday.</h1>
-      <p class="mt-4 max-w-sm text-sm text-white/85">Discover innovative gadgets and accessories built for performance and style.</p>
-      <a href="#picks" class="mt-6 inline-block rounded-md bg-[#f97316] px-6 py-3 text-sm font-semibold hover:bg-[#fb923c] text-[#0b0b0f]">Explore Now →</a>
-      <div class="mt-10 flex items-center gap-2"><button data-dot aria-label="Slide 1" class="h-1.5 w-6 bg-orange-400 rounded-full transition-all duration-500"></button><button data-dot aria-label="Slide 2" class="h-1.5 w-1.5 bg-white/50 rounded-full transition-all duration-500"></button><button data-dot aria-label="Slide 3" class="h-1.5 w-1.5 bg-white/50 rounded-full transition-all duration-500"></button><button data-dot aria-label="Slide 4" class="h-1.5 w-1.5 bg-white/50 rounded-full transition-all duration-500"></button><button data-dot aria-label="Slide 5" class="h-1.5 w-1.5 bg-white/50 rounded-full transition-all duration-500"></button><button data-dot aria-label="Slide 6" class="h-1.5 w-1.5 bg-white/50 rounded-full transition-all duration-500"></button><button data-dot aria-label="Slide 7" class="h-1.5 w-1.5 bg-white/50 rounded-full transition-all duration-500"></button></div>
+    <div class="reveal">
+      <p id="heroEyebrow" class="text-xs font-bold uppercase tracking-widest text-orange-400">Enhance your gadget style</p>
+      <h1 id="heroTitle" class="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">Smart Tech. Better Everyday.</h1>
+      <p id="heroDescription" class="mt-4 max-w-sm text-sm leading-6 text-white/85">Discover innovative gadgets and accessories built for performance and style.</p>
+      <a href="#picks" class="mt-6 inline-block rounded-md bg-orange-500 px-6 py-3 text-sm font-bold text-black hover:bg-orange-400">Explore Now →</a>
+      <div class="mt-10 flex items-center gap-2" id="heroDots"></div>
     </div>
-    <div data-r class="relative flex h-72 items-center justify-center opacity-0 translate-y-8 transition duration-700 ease-out md:h-[26rem]">
-      <div class="absolute inset-x-2 inset-y-0 rounded-[2rem] border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-orange-300/10 shadow-[0_25px_80px_rgba(249,115,22,0.30)] backdrop-blur-md"></div>
-      <div class="absolute left-2 top-0 h-1/2 w-2/3 rounded-[2rem] bg-gradient-to-br from-white/25 to-transparent"></div>
-      <div class="absolute bottom-3 h-14 w-4/5 rounded-[50%] bg-orange-500/40 blur-xl"></div>
-      <div class="absolute bottom-5 h-10 w-3/4 rounded-[50%] border border-white/30 bg-gradient-to-b from-white/30 to-orange-800/30 backdrop-blur"></div>
+    <div class="reveal relative flex h-72 items-center justify-center md:h-[26rem]">
+      <div class="absolute inset-x-2 inset-y-0 rounded-[2rem] border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-orange-300/10 shadow-[0_25px_80px_rgba(249,115,22,.3)]"></div>
+      <div class="absolute bottom-5 h-10 w-3/4 rounded-[50%] border border-white/30 bg-orange-800/30 blur-sm"></div>
       <div id="heroStage" class="relative h-full w-full">
-        <div data-slide class="absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out opacity-0 scale-50 translate-y-8 rotate-12"><img data-float data-img="orange" alt="Orange flagship smartphone" class="h-52 w-auto md:h-80 drop-shadow-[0_28px_28px_rgba(0,0,0,0.55)] select-none" draggable="false"><span class="mt-3 text-sm font-semibold tracking-wide text-white/80">Flagship Phones</span></div>
-        <div data-slide class="absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out opacity-0 scale-50 translate-y-8 rotate-12"><img data-float data-img="galaxy" alt="Purple smartphone with triple camera" class="h-52 w-auto md:h-80 drop-shadow-[0_28px_28px_rgba(0,0,0,0.55)] select-none" draggable="false"><span class="mt-3 text-sm font-semibold tracking-wide text-white/80">Camera Phones</span></div>
-        <div data-slide class="absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out opacity-0 scale-50 translate-y-8 rotate-12"><img data-float data-img="headphones" alt="Wireless over-ear headphones" class="h-52 w-auto md:h-80 drop-shadow-[0_28px_28px_rgba(0,0,0,0.55)] select-none" draggable="false"><span class="mt-3 text-sm font-semibold tracking-wide text-white/80">Wireless Headphones</span></div>
-        <div data-slide class="absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out opacity-0 scale-50 translate-y-8 rotate-12"><img data-float data-img="dark" alt="Dark smartphone on display" class="h-52 w-auto md:h-80 drop-shadow-[0_28px_28px_rgba(0,0,0,0.55)] select-none" draggable="false"><span class="mt-3 text-sm font-semibold tracking-wide text-white/80">Premium Smartphones</span></div>
-        <div data-slide class="absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out opacity-0 scale-50 translate-y-8 rotate-12"><img data-float data-img="speaker" alt="Portable Bluetooth speaker" class="h-48 w-auto md:h-72 drop-shadow-[0_28px_28px_rgba(0,0,0,0.55)] select-none" draggable="false"><span class="mt-3 text-sm font-semibold tracking-wide text-white/80">Bluetooth Speakers</span></div>
-        <div data-slide class="absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out opacity-0 scale-50 translate-y-8 rotate-12"><img data-float data-img="ps5" alt="PS5 console with controller" class="h-52 w-auto md:h-80 drop-shadow-[0_28px_28px_rgba(0,0,0,0.55)] select-none" draggable="false"><span class="mt-3 text-sm font-semibold tracking-wide text-white/80">PS5 &amp; Consoles</span></div>
-        <div data-slide class="absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out opacity-0 scale-50 translate-y-8 rotate-12"><img data-float data-img="Laptop" alt="Slim premium laptop" class="w-64 h-auto md:w-[16rem] drop-shadow-[0_28px_28px_rgba(0,0,0,0.55)] select-none" draggable="false"><span class="mt-3 text-sm font-semibold tracking-wide text-white/80">Ultra-slim Laptops</span></div>
+        <img data-slide src="images/orange.webp" alt="Orange smartphone" class="absolute inset-0 m-auto h-52 w-auto object-contain opacity-0 transition duration-700 md:h-80">
+        <img data-slide src="images/galaxy.webp" alt="Samsung smartphone" class="absolute inset-0 m-auto h-52 w-auto object-contain opacity-0 transition duration-700 md:h-80">
+        <img data-slide src="images/headphones.webp" alt="Wireless headphones" class="absolute inset-0 m-auto h-52 w-auto object-contain opacity-0 transition duration-700 md:h-80">
+        <img data-slide src="images/dark.webp" alt="Premium smartphone" class="absolute inset-0 m-auto h-52 w-auto object-contain opacity-0 transition duration-700 md:h-80">
+        <img data-slide src="images/speaker.webp" alt="Portable Bluetooth speaker" class="absolute inset-0 m-auto h-48 w-auto object-contain opacity-0 transition duration-700 md:h-72">
+        <img data-slide src="images/ps5.webp" alt="PlayStation console" class="absolute inset-0 m-auto h-52 w-auto object-contain opacity-0 transition duration-700 md:h-80">
+        <img data-slide src="images/laptop.webp" alt="Laptop" class="absolute inset-0 m-auto w-64 object-contain opacity-0 transition duration-700">
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="mx-auto max-w-6xl px-4 py-8">
-  <div id="features" class="grid grid-cols-2 gap-6 md:grid-cols-4"></div>
+<section class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 md:grid-cols-4">
+  <div>🚚 <b class="block text-sm">Reliable Delivery</b><span class="text-xs text-slate-500">Across Nigeria</span></div>
+  <div>🛡️ <b class="block text-sm">Secure Payments</b><span class="text-xs text-slate-500">Paystack checkout</span></div>
+  <div>🏅 <b class="block text-sm">Quality Gadgets</b><span class="text-xs text-slate-500">Trusted products</span></div>
+  <div>🎧 <b class="block text-sm">Customer Support</b><span class="text-xs text-slate-500">Here to help</span></div>
 </section>
 
-<!-- CATEGORIES -->
-<section id="cats" class="mx-auto max-w-6xl px-4 pb-10">
-  <div id="catGrid" class="grid grid-cols-2 gap-4 md:grid-cols-4"></div>
-</section>
-
-<!-- TOP PICKS -->
-<section id="picks" class="mx-auto max-w-6xl px-4 pb-10">
-  <div class="mb-5 flex items-center justify-between">
-    <h2 class="text-xl font-bold">Top Picks</h2>
-    <a href="#" class="text-sm font-semibold text-[#c2410c]">View All →</a>
+<section class="mx-auto max-w-6xl px-4 pb-10">
+  <h2 class="mb-5 text-xl font-extrabold">Shop by Category</h2>
+  <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <a href="#picks" class="rounded-2xl bg-orange-50 p-5 font-bold">Audio Devices <img src="images/headphones.webp" alt="Headphones" class="mx-auto mt-3 h-24 object-contain"></a>
+    <a href="#picks" class="rounded-2xl bg-stone-100 p-5 font-bold">Smartphones <img src="images/phones3.webp" alt="Smartphones" class="mx-auto mt-3 h-24 object-contain"></a>
+    <a href="#picks" class="rounded-2xl bg-slate-100 p-5 font-bold">Laptops <img src="images/elitebook.webp" alt="Laptop" class="mx-auto mt-3 h-24 object-contain"></a>
+    <a href="#picks" class="rounded-2xl bg-orange-100 p-5 font-bold">PS5 & Consoles <img src="images/ps5bundle.webp" alt="PS5" class="mx-auto mt-3 h-24 object-contain"></a>
   </div>
+</section>
+
+<section id="picks" class="mx-auto max-w-6xl px-4 pb-12">
+  <div class="mb-5 flex items-center justify-between"><h2 class="text-xl font-extrabold">Top Picks</h2><span class="text-sm font-semibold text-orange-700">Shop e-Global</span></div>
   <div id="prodGrid" class="grid grid-cols-2 gap-4 md:grid-cols-4"></div>
 </section>
 
-<!-- PRODUCTIVITY BANNER -->
-<section class="mx-auto max-w-6xl px-4 pb-6">
-  <div data-r class="grid items-center gap-4 overflow-hidden rounded-2xl bg-gradient-to-r from-[#0b0b0f] via-[#17120d] to-[#2a1608] p-8 text-white opacity-0 translate-y-8 transition duration-700 ease-out md:grid-cols-2 md:p-10">
-    <div>
-      <p class="text-xs font-semibold uppercase tracking-widest text-[#fb923c]">Work smart, play hard</p>
-      <h2 class="mt-2 text-3xl font-extrabold">Boost Your Productivity</h2>
-      <p class="mt-2 text-sm text-white/85">Essential tech for work, study &amp; entertainment.</p>
-      <a href="#" class="mt-5 inline-block rounded-md border border-white/70 px-5 py-2.5 text-sm font-semibold hover:bg-white hover:text-[#c2410c]">Shop Accessories →</a>
-    </div>
-    <div class="flex items-center justify-center md:justify-end"><img data-img="laptop" alt="Slim premium laptop" class="w-64 drop-shadow-[0_24px_24px_rgba(0,0,0,0.5)] md:w-80"></div>
+<section id="arrivals" class="mx-auto max-w-6xl px-4 pb-12">
+  <div class="grid items-center gap-5 rounded-2xl bg-gradient-to-r from-[#0b0b0f] to-[#2a1608] p-8 text-white md:grid-cols-2">
+    <div><p class="text-xs font-bold uppercase tracking-widest text-orange-400">Work smart, play hard</p><h2 class="mt-2 text-3xl font-extrabold">Boost Your Productivity</h2><p class="mt-2 text-sm text-white/80">Essential tech for work, study and entertainment.</p><a href="#picks" class="mt-5 inline-block rounded-md border border-white/70 px-5 py-2.5 text-sm font-semibold">Explore products →</a></div>
+    <img src="images/Laptop.png" alt="Laptop" class="mx-auto h-48 object-contain">
   </div>
 </section>
 
-<!-- NEW ARRIVALS / BEST SELLERS -->
-<section id="arrivals" class="mx-auto grid max-w-6xl gap-4 px-4 pb-10 md:grid-cols-2">
-  <div data-r class="flex items-center justify-between rounded-2xl min-h-[11rem] gap-3 overflow-hidden bg-[#fff1e6] p-6 opacity-0 translate-y-8 transition duration-700 ease-out">
-    <div class="min-w-0"><h3 class="text-lg font-bold">New Arrivals</h3><p class="mt-1 text-sm text-slate-600">Explore the latest<br>tech essentials.</p><a href="#" class="mt-4 inline-block text-sm font-semibold text-[#c2410c]">Shop New →</a></div>
-    <img data-img="flip" alt="New foldable phone" class="h-28 w-auto max-w-[45%] shrink-0 object-contain drop-shadow-[0_14px_14px_rgba(0,0,0,0.35)] md:h-32">
-  </div>
-  <div data-r class="flex items-center justify-between rounded-2xl min-h-[11rem] gap-3 overflow-hidden bg-[#f4f4f5] p-6 opacity-0 translate-y-8 transition duration-700 ease-out">
-    <div class="min-w-0"><h3 class="text-lg font-bold">Best Sellers</h3><p class="mt-1 text-sm text-slate-600">Shop our most<br>popular picks.</p><a href="#" class="mt-4 inline-block text-sm font-semibold text-[#c2410c]">Shop Bestsellers →</a></div>
-    <img data-img="orange" alt="Latest iPhone" class="h-28 w-auto max-w-[45%] shrink-0 object-contain -rotate-[8deg] drop-shadow-[0_14px_14px_rgba(0,0,0,0.35)] md:h-32">
+<section class="mx-auto max-w-6xl px-4 pb-10">
+  <div class="flex flex-col items-center gap-4 rounded-xl bg-orange-500 px-6 py-5 text-black md:flex-row md:justify-between">
+    <div><p class="font-extrabold">Join Our Newsletter</p><p class="text-xs text-black/70">Get updates, offers and new arrivals.</p></div>
+    <div class="flex w-full gap-2 md:w-auto"><input id="nlEmail" type="email" placeholder="Enter your email" class="w-full rounded-md px-4 py-2.5 text-sm md:w-72"><button id="nlBtn" class="rounded-md bg-black px-6 py-2.5 text-sm font-bold text-white">Subscribe</button></div>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="mx-auto max-w-6xl px-4">
-  <div data-r class="flex flex-col items-center gap-4 rounded-t-xl bg-[#f97316] px-6 py-5 text-[#0b0b0f] opacity-0 translate-y-8 transition duration-700 ease-out md:flex-row md:justify-between">
-    <div class="flex items-center gap-4"><span class="text-4xl">✉️</span><div><p class="font-bold">Join Our Newsletter</p><p class="text-xs text-black/70">Get the latest updates, offers &amp; new arrivals.</p></div></div>
-    <div class="flex w-full gap-2 md:w-auto">
-      <input id="nlEmail" type="email" placeholder="Enter your email" class="w-full rounded-md px-4 py-2.5 text-sm text-slate-900 outline-none md:w-72">
-      <button id="nlBtn" class="rounded-md bg-[#0b0b0f] px-6 py-2.5 text-sm font-semibold text-white hover:bg-black">Subscribe</button>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer id="foot" class="bg-[#0b0b0f] text-white">
-  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-4">
-    <div class="md:col-span-1">
-      <a href="#" class="flex items-center gap-2.5"><img data-img="badge" alt="e-Global Enterprise logo" class="h-11 w-11 rounded-full ring-1 ring-orange-400/40"><span class="flex flex-col leading-none font-['Montserrat',system-ui,sans-serif]"><span class="text-[1.7rem] font-semibold tracking-tight"><span class="text-[#f58a2a]">e</span><span class="text-[#f6b08a]">-</span><span class="text-white">Global</span></span><span class="mt-1.5 flex justify-between pl-[5%] text-[0.5rem] font-bold text-white/90"><span>E</span><span>N</span><span>T</span><span>E</span><span>R</span><span>P</span><span>R</span><span>I</span><span>S</span><span>E</span></span></span></a>
-      <p class="mt-3 text-xs text-white/70">Phones, top-notch pouches, consoles and gadget accessories.</p>
-      <p class="mt-2 text-xs text-white/70">📍 Computer Village, Ikeja (Lagos) · Garrison, Port Harcourt</p>
-      <p class="mt-1 text-xs text-white/70">💬 <a href="https://wa.me/2349126406370" target="_blank" rel="noopener" class="underline">+234 912 640 6370</a></p>
-      <div class="mt-4 flex gap-2 text-xs"><a href="https://www.instagram.com/eglo_bal90/" target="_blank" rel="noopener" aria-label="Instagram" class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-white/20">◎</a></div>
-    </div>
-    <div id="footCols" class="grid grid-cols-2 gap-8 md:col-span-3 md:grid-cols-3"></div>
+  <div class="mx-auto grid max-w-6xl gap-6 px-4 py-10 md:grid-cols-2">
+    <div><h2 class="text-2xl font-extrabold"><span class="text-orange-400">e</span>-Global Enterprise</h2><p class="mt-3 text-xs text-white/70">Phones, pouches, consoles and gadget accessories.</p><p class="mt-2 text-xs text-white/70">Computer Village, Ikeja (Lagos) · Garrison, Port Harcourt</p><p class="mt-2 text-xs">WhatsApp: <a href="https://wa.me/2349126406370" class="underline">+234 912 640 6370</a></p><a href="https://www.instagram.com/eglo_bal90/" class="mt-3 inline-block text-sm underline">Instagram</a></div>
+    <div class="text-sm text-white/70"><p class="font-bold text-white">Customer Service</p><p class="mt-3">Shipping · Returns · FAQs · Contact Us</p><p class="mt-6 text-xs">© 2026 e-Global Enterprise. All Rights Reserved.</p></div>
   </div>
-  <p class="border-t border-white/10 py-4 text-center text-xs text-white/60">© 2026 e-Global Enterprise. All Rights Reserved.</p>
 </footer>
 
-<!-- CART DRAWER -->
-<div id="cartOverlay" class="fixed inset-0 z-50 hidden justify-end bg-black/50 opacity-0 transition duration-300">
-  <aside id="cartPanel" class="flex h-full w-full max-w-sm translate-x-full flex-col bg-white shadow-2xl transition duration-300">
-    <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
-      <h2 class="text-lg font-bold">Your Cart</h2>
-      <button id="cartClose" class="text-xl text-slate-400 hover:text-[#c2410c]" aria-label="Close cart">✕</button>
-    </div>
-    <div class="flex-1 overflow-y-auto px-5">
-      <div id="cartEmpty" class="flex h-full flex-col items-center justify-center text-center text-slate-500"><span class="text-6xl">🛒</span><p class="mt-3 font-semibold text-slate-700">Your cart is empty</p><p class="text-xs">Add some gadgets to get started.</p></div>
-      <div id="cartList"></div>
-    </div>
-    <div id="cartFoot" class="hidden border-t border-slate-200 px-5 py-4">
-      <p id="cartShip" class="mb-3 rounded-lg bg-[#fff1e6] px-3 py-2 text-xs font-medium text-[#c2410c]"></p>
-      <div class="flex items-center justify-between text-sm"><span class="text-slate-500">Subtotal</span><span id="cartTotal" class="text-lg font-extrabold">$0.00</span></div>
-      <a id="checkoutBtn" href="#" target="_blank" rel="noopener" class="mt-4 block w-full rounded-lg bg-[#f97316] py-3 text-center text-sm font-semibold text-[#0b0b0f] hover:bg-[#fb923c]">Order on WhatsApp</a>
-      <button id="clearCart" class="mt-2 w-full py-2 text-xs font-semibold text-slate-500 hover:text-red-600">Clear cart</button>
+<!-- Cart drawer -->
+<div id="cartOverlay" class="fixed inset-0 z-50 hidden justify-end bg-black/50">
+  <aside class="flex h-full w-full max-w-sm flex-col bg-white shadow-2xl">
+    <div class="flex items-center justify-between border-b px-5 py-4"><h2 class="text-lg font-bold">Your Cart</h2><button id="cartClose" class="text-xl">✕</button></div>
+    <div class="flex-1 overflow-y-auto px-5"><div id="cartEmpty" class="flex h-full flex-col items-center justify-center text-center text-slate-500"><span class="text-5xl">🛒</span><p class="mt-3 font-semibold">Your cart is empty</p></div><div id="cartList"></div></div>
+    <div id="cartFoot" class="hidden border-t px-5 py-4">
+      <p id="cartShip" class="mb-3 rounded-lg bg-orange-50 px-3 py-2 text-xs font-medium text-orange-800"></p>
+      <div class="flex justify-between text-sm"><span class="text-slate-500">Subtotal</span><b id="cartTotal" class="text-lg"></b></div>
+      <button id="checkoutBtn" class="mt-4 w-full rounded-lg bg-orange-500 py-3 text-sm font-bold text-black hover:bg-orange-400">Proceed to Payment</button>
+      <button id="clearCart" class="mt-2 w-full py-2 text-xs font-semibold text-slate-500">Clear cart</button>
+      <p class="mt-2 text-center text-[10px] text-slate-500">Secure checkout powered by Paystack.</p>
     </div>
   </aside>
 </div>
 
-<!-- AUTH MODAL -->
-<div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4 opacity-0 transition duration-200">
-  <div id="authCard" class="relative max-h-[92vh] w-full max-w-md scale-95 overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl transition duration-200">
-    <button id="authClose" class="absolute right-4 top-4 text-xl text-slate-400 hover:text-[#c2410c]" aria-label="Close">✕</button>
-    <div class="flex items-center gap-2"><img data-img="badge" alt="e-Global Enterprise logo" class="h-9 w-9 rounded-full"><span class="flex flex-col leading-none font-['Montserrat',system-ui,sans-serif]"><span class="text-xl font-semibold tracking-tight"><span class="text-[#f07a1a]">e</span><span class="text-[#f0a070]">-</span><span class="text-slate-900">Global</span></span><span class="mt-1.5 flex justify-between pl-[5%] text-[0.5rem] font-bold text-slate-600"><span>E</span><span>N</span><span>T</span><span>E</span><span>R</span><span>P</span><span>R</span><span>I</span><span>S</span><span>E</span></span></span></div>
-    <h2 id="authTitle" class="mt-4 text-2xl font-extrabold">Welcome back</h2>
-    <p id="authSub" class="mt-1 text-sm text-slate-500">Log in to track orders and checkout faster.</p>
-
-    <div class="mt-5 flex gap-1 rounded-xl bg-slate-100 p-1">
-      <button id="tabLogin" type="button" class="flex-1 rounded-lg bg-[#f97316] py-2 text-sm font-semibold text-[#0b0b0f] transition">Login</button>
-      <button id="tabSignup" type="button" class="flex-1 rounded-lg py-2 text-sm font-semibold text-slate-600 transition">Sign Up</button>
-    </div>
-
-    <!-- LOGIN -->
-    <form id="loginForm" class="mt-5 space-y-4" novalidate>
-      <div><label class="mb-1 block text-xs font-semibold text-slate-700">Email</label>
-        <input name="email" type="email" placeholder="you@example.com" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-[#f97316] focus:ring-2 focus:ring-[#f97316]/30"></div>
-      <div><label class="mb-1 block text-xs font-semibold text-slate-700">Password</label>
-        <div class="relative"><input name="password" type="password" placeholder="••••••••" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pr-16 text-sm outline-none focus:border-[#f97316] focus:ring-2 focus:ring-[#f97316]/30"><button type="button" data-pw class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#c2410c]">Show</button></div></div>
-      <div class="flex items-center justify-between text-xs"><label class="flex items-center gap-2 text-slate-600"><input type="checkbox" class="accent-[#f97316]"> Remember me</label><a href="#" class="font-semibold text-[#c2410c]">Forgot password?</a></div>
-      <p id="loginErr" class="hidden rounded-lg bg-red-50 px-3 py-2 text-xs text-red-600"></p>
-      <button class="w-full rounded-lg bg-[#f97316] py-3 text-sm font-semibold text-[#0b0b0f] hover:bg-[#fb923c]">Log In</button>
-      <p class="text-center text-xs text-slate-500">New to e-Global? <button type="button" data-goto="signup" class="font-semibold text-[#c2410c]">Create an account</button></p>
-    </form>
-
-    <!-- SIGN UP -->
-    <form id="signupForm" class="mt-5 hidden space-y-4" novalidate>
-      <div><label class="mb-1 block text-xs font-semibold text-slate-700">Full name</label>
-        <input name="fullname" type="text" placeholder="Your name" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-[#f97316] focus:ring-2 focus:ring-[#f97316]/30"></div>
-      <div><label class="mb-1 block text-xs font-semibold text-slate-700">Email</label>
-        <input name="email" type="email" placeholder="you@example.com" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-[#f97316] focus:ring-2 focus:ring-[#f97316]/30"></div>
-      <div><label class="mb-1 block text-xs font-semibold text-slate-700">Password</label>
-        <div class="relative"><input name="password" type="password" placeholder="At least 6 characters" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pr-16 text-sm outline-none focus:border-[#f97316] focus:ring-2 focus:ring-[#f97316]/30"><button type="button" data-pw class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#c2410c]">Show</button></div></div>
-      <div><label class="mb-1 block text-xs font-semibold text-slate-700">Confirm password</label>
-        <div class="relative"><input name="confirm" type="password" placeholder="Repeat password" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pr-16 text-sm outline-none focus:border-[#f97316] focus:ring-2 focus:ring-[#f97316]/30"><button type="button" data-pw class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#c2410c]">Show</button></div></div>
-      <label class="flex items-start gap-2 text-xs text-slate-600"><input name="terms" type="checkbox" class="mt-0.5 accent-[#f97316]"> I agree to the Terms of Service and Privacy Policy.</label>
-      <p id="signupErr" class="hidden rounded-lg bg-red-50 px-3 py-2 text-xs text-red-600"></p>
-      <button class="w-full rounded-lg bg-[#f97316] py-3 text-sm font-semibold text-[#0b0b0f] hover:bg-[#fb923c]">Create Account</button>
-      <p class="text-center text-xs text-slate-500">Already have an account? <button type="button" data-goto="login" class="font-semibold text-[#c2410c]">Log in</button></p>
-    </form>
-  </div>
+<!-- Auth modal -->
+<div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4">
+ <div class="relative max-h-[92vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
+  <button id="authClose" class="absolute right-4 top-4 text-xl text-slate-400">✕</button>
+  <h2 id="authTitle" class="text-2xl font-extrabold">Welcome back</h2><p id="authSub" class="mt-1 text-sm text-slate-500">Log in to your account.</p>
+  <div class="mt-5 flex gap-1 rounded-xl bg-slate-100 p-1"><button id="tabLogin" class="flex-1 rounded-lg bg-orange-500 py-2 text-sm font-bold">Login</button><button id="tabSignup" class="flex-1 rounded-lg py-2 text-sm font-bold">Sign Up</button></div>
+  <form id="loginForm" class="mt-5 space-y-4">
+   <input name="email" type="email" required placeholder="Email address" class="w-full rounded-lg border px-4 py-3 text-sm">
+   <input name="password" type="password" required minlength="6" placeholder="Password" class="w-full rounded-lg border px-4 py-3 text-sm">
+   <p id="loginErr" class="hidden rounded bg-red-50 p-2 text-xs text-red-600"></p><button class="w-full rounded-lg bg-orange-500 py-3 text-sm font-bold">Log In</button>
+  </form>
+  <form id="signupForm" class="mt-5 hidden space-y-4">
+   <input name="fullname" required minlength="2" placeholder="Full name" class="w-full rounded-lg border px-4 py-3 text-sm">
+   <input name="email" type="email" required placeholder="Email address" class="w-full rounded-lg border px-4 py-3 text-sm">
+   <input name="password" type="password" required minlength="6" placeholder="Password (at least 6 characters)" class="w-full rounded-lg border px-4 py-3 text-sm">
+   <input name="confirm" type="password" required minlength="6" placeholder="Confirm password" class="w-full rounded-lg border px-4 py-3 text-sm">
+   <label class="flex items-start gap-2 text-xs text-slate-600"><input name="terms" type="checkbox" required> I agree to the Terms of Service and Privacy Policy.</label>
+   <p id="signupErr" class="hidden rounded bg-red-50 p-2 text-xs text-red-600"></p><button class="w-full rounded-lg bg-orange-500 py-3 text-sm font-bold">Create Account</button>
+  </form>
+ </div>
 </div>
-
-<div id="toast" class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 translate-y-4 rounded-full bg-[#0b0b0f] px-5 py-3 text-sm text-white opacity-0 transition duration-300"></div>
+<div id="toast" class="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-full bg-black px-5 py-3 text-sm text-white opacity-0 transition"></div>
 
 <script>
-const IMG = {"orange": "images/orange.webp", "galaxy": "images/galaxy.webp", "dark": "images/dark.webp", "Laptop": "images/Laptop.png", "headphones": "images/headphones.webp", "speaker": "images/speaker.webp"};
-Object.assign(IMG, {"logo": "images/logo.webp", "badge": "images/badge.webp", "flip": "images/flip.webp", "phones3": "images/phones3.webp", "smartwatch": "images/smartwatch.webp", "elitebook": "images/elitebook.webp", "ps5": "images/ps5.webp", "ps5bundle": "images/ps5bundle.webp"});
-document.querySelectorAll("[data-img]").forEach(i => { i.src = IMG[i.dataset.img]; });
-const fav = document.createElement("link"); fav.rel = "icon"; fav.href = IMG.badge; document.head.appendChild(fav);
-const WA_NUMBER = "2349126406370"; // replace with the shop’s WhatsApp number (country code, no +)
-const pic = (k, alt, cls, emo) => IMG[k] ? `<img src="${IMG[k]}" alt="${alt}" class="${cls}">` : `<span class="${emo}">${k}</span>`;
-const R = "opacity-0 translate-y-8 transition duration-700 ease-out";
-const features = [["🚚","Free Shipping","On orders over $50"],["🛡️","30-Day Returns","Easy returns & refunds"],["🏅","Secure Payments","100% secure checkout"],["🎧","24/7 Support","We’re here to help"]];
-document.getElementById("features").innerHTML = features.map(f => `
-  <div data-r class="flex items-center gap-3 ${R}"><span class="text-3xl">${f[0]}</span><div><p class="text-sm font-semibold">${f[1]}</p><p class="text-xs text-slate-500">${f[2]}</p></div></div>`).join("");
-
-const cats = [["Audio Devices","headphones","bg-[#fff1e6]"],["Smart Watches","smartwatch","bg-[#f5f5f4]"],["HP EliteBook X G2","elitebook","bg-[#f4f4f5]"],["PS5 & Consoles","ps5bundle","bg-[#ffe9d6]"]];
-document.getElementById("catGrid").innerHTML = cats.map(c => `
-  <a href="#" data-r class="flex min-w-0 flex-col justify-between gap-3 overflow-hidden rounded-2xl ${c[2]} p-4 hover:shadow-md md:flex-row md:items-center md:p-5 ${R}"><div class="min-w-0"><p class="font-bold leading-tight">${c[0]}</p><p class="mt-3 text-xs font-semibold text-[#c2410c]">Shop Now →</p></div><div class="flex h-24 w-full items-center justify-center md:w-28 md:shrink-0 md:justify-end">${pic(c[1], c[0], "h-full w-auto max-w-full object-contain drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]", "text-6xl")}</div></a>`).join("");
-
-const prods = [
-  ["SoundPro X1","Wireless Earbuds","$79.99","","NEW","bg-[#0b0b0f]","🎧"],
-  ["Pouches","Smartphone","$149.99","","BESTSELLER","bg-green-700","speaker"],
-  ["BoomMate","Portable Speaker","$89.99","$119.99","SALE","bg-red-600","speaker"],
-  ["Flagship Phones","Samsung • iPhone • Pixel","$899.99","$999.99","HOT","bg-orange-700","phones3"]
-];
-document.getElementById("prodGrid").innerHTML = prods.map((p, i) => `
-  <div data-r class="flex flex-col overflow-hidden rounded-2xl bg-slate-50 p-4 ${R}">
-    <div class="relative flex h-36 items-center justify-center text-7xl">
-      ${p[4] ? `<span class="absolute left-0 top-0 rounded ${p[5]} px-2 py-0.5 text-[10px] font-bold text-white">${p[4]}</span>` : ""}${pic(p[6], p[0], "h-32 w-full object-contain drop-shadow-[0_12px_12px_rgba(0,0,0,0.3)]", "")}
-    </div>
-    <p class="mt-3 text-sm leading-snug">${p[0]}<br>${p[1]}</p>
-    <p class="mb-3 mt-2 text-sm font-bold">${p[2]} ${p[3] ? `<span class="ml-1 text-xs font-normal text-slate-400 line-through">${p[3]}</span>` : ""}</p>
-    <button data-add="${i}" class="mt-auto w-full rounded-md bg-[#f97316] py-2.5 text-xs font-semibold text-[#0b0b0f] hover:bg-[#fb923c]">🛒 Add to Cart</button>
-  </div>`).join("");
-
-const cols = [
-  ["Shop",["All Products","New Arrivals","Top Deals","Accessories"]],
-  ["Customer Service",["Shipping Info","Returns & Refunds","Track Your Order","FAQs","Contact Us"]],
-  ["Company",["About Us","Privacy Policy","Terms of Service"]]
-];
-document.getElementById("footCols").innerHTML = cols.map(c => `
-  <div><p class="text-sm font-semibold">${c[0]}</p><ul class="mt-3 space-y-2 text-xs text-white/70">${c[1].map(i => `<li><a href="#" class="hover:text-white">${i}</a></li>`).join("")}</ul></div>`).join("");
-
-document.getElementById("menuBtn").onclick = () => {
-  const m = document.getElementById("mobileMenu");
-  m.classList.toggle("hidden"); m.classList.toggle("flex");
-};
-
-// ===== Cart =====
-let cart = {};
-try { cart = JSON.parse(localStorage.getItem("gh_cart")) || {}; } catch (e) { cart = {}; }
-Object.keys(cart).forEach(k => { if (!prods[k] || !(cart[k] > 0)) delete cart[k]; });
-const priceOf = k => parseFloat(prods[k][2].slice(1));
-const cOver = document.getElementById("cartOverlay"), cPanel = document.getElementById("cartPanel");
-function renderCart() {
-  const ids = Object.keys(cart);
-  const count = ids.reduce((s, k) => s + cart[k], 0);
-  const total = ids.reduce((s, k) => s + cart[k] * priceOf(k), 0);
-  const badge = document.getElementById("cartCount");
-  badge.textContent = count; badge.classList.toggle("hidden", count === 0);
-  document.getElementById("cartTotal").textContent = "$" + total.toFixed(2);
-  const msg = "Hello, I’d like to order:\n" + ids.map(k => "• " + cart[k] + " × " + prods[k][0] + " (" + prods[k][1] + ") — " + prods[k][2]).join("\n") + "\nTotal: $" + total.toFixed(2);
-  document.getElementById("checkoutBtn").href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
-  document.getElementById("cartEmpty").classList.toggle("hidden", count > 0);
-  document.getElementById("cartFoot").classList.toggle("hidden", count === 0);
-  document.getElementById("cartShip").textContent = total >= 50 ? "🎉 You’ve unlocked free shipping!" : "Add $" + (50 - total).toFixed(2) + " more for free shipping.";
-  document.getElementById("cartList").innerHTML = ids.map(k => `
-    <div class="flex items-center gap-3 border-b border-slate-100 py-3">
-      <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-3xl">${pic(prods[k][6], prods[k][0], "h-14 w-14 object-contain", "")}</div>
-      <div class="min-w-0 flex-1">
-        <p class="truncate text-sm font-semibold">${prods[k][0]}</p>
-        <p class="text-xs text-slate-500">${prods[k][1]}</p>
-        <p class="mt-1 text-sm font-bold text-[#c2410c]">${prods[k][2]}</p>
-      </div>
-      <div class="flex flex-col items-end gap-2">
-        <button data-act="del" data-id="${k}" class="text-xs text-slate-400 hover:text-red-600">Remove</button>
-        <div class="flex items-center rounded-md border border-slate-300 text-sm">
-          <button data-act="dec" data-id="${k}" class="px-2.5 py-1">−</button>
-          <span class="w-6 text-center text-xs font-semibold">${cart[k]}</span>
-          <button data-act="inc" data-id="${k}" class="px-2.5 py-1">+</button>
-        </div>
-      </div>
-    </div>`).join("");
-  try { localStorage.setItem("gh_cart", JSON.stringify(cart)); } catch (e) {}
-}
-function openCart() {
-  cOver.classList.remove("hidden"); cOver.classList.add("flex");
-  requestAnimationFrame(() => { cOver.classList.remove("opacity-0"); cPanel.classList.remove("translate-x-full"); });
-}
-function closeCart() {
-  cOver.classList.add("opacity-0"); cPanel.classList.add("translate-x-full");
-  setTimeout(() => { cOver.classList.add("hidden"); cOver.classList.remove("flex"); }, 300);
-}
-document.getElementById("prodGrid").addEventListener("click", e => {
-  const b = e.target.closest("[data-add]");
-  if (!b) return;
-  const id = b.dataset.add;
-  cart[id] = (cart[id] || 0) + 1;
-  renderCart();
-  toast(prods[id][0] + " added to cart");
-  b.textContent = "✓ Added";
-  setTimeout(() => { b.textContent = "🛒 Add to Cart"; }, 900);
-});
-document.getElementById("cartList").addEventListener("click", e => {
-  const b = e.target.closest("[data-act]");
-  if (!b) return;
-  const id = b.dataset.id, a = b.dataset.act;
-  if (a === "inc") cart[id]++;
-  if (a === "dec") { cart[id]--; if (cart[id] <= 0) delete cart[id]; }
-  if (a === "del") delete cart[id];
-  renderCart();
-});
-document.getElementById("cartBtn").onclick = openCart;
-document.getElementById("cartClose").onclick = closeCart;
-cOver.onclick = e => { if (e.target === cOver) closeCart(); };
-document.getElementById("clearCart").onclick = () => { cart = {}; renderCart(); };
-
-document.addEventListener("keydown", e => { if (e.key === "Escape" && !cOver.classList.contains("hidden")) closeCart(); });
-renderCart();
-
-// ===== Supabase (paste your own keys; until then the modal runs in demo mode) =====
+/* CONFIG: keep the Supabase publishable/anon key here. Never put a Paystack secret key in this file. */
 const SUPABASE_URL = "https://nrsluftpnmmriqldxcfb.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_DIHR2ju_34YXFrMTCnpL5Q_Q--vLKng";
-const sb = (window.supabase && !SUPABASE_URL.startsWith("YOUR_")) ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-const nameOf = u => (u.user_metadata && u.user_metadata.full_name) ? u.user_metadata.full_name.split(" ")[0] : (u.email || "User").split("@")[0];
+const PAYMENT_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/paystack`;
+const sb = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ===== Auth modal =====
-const modal = document.getElementById("authModal"), card = document.getElementById("authCard");
-const tabOn = "bg-[#f97316] text-[#0b0b0f]", tabOff = "text-slate-600 hover:text-[#c2410c]";
-const tabBase = "flex-1 rounded-lg py-2 text-sm font-semibold transition ";
-function setTab(t) {
-  const login = t === "login";
-  document.getElementById("loginForm").classList.toggle("hidden", !login);
-  document.getElementById("signupForm").classList.toggle("hidden", login);
-  document.getElementById("tabLogin").className = tabBase + (login ? tabOn : tabOff);
-  document.getElementById("tabSignup").className = tabBase + (login ? tabOff : tabOn);
-  document.getElementById("authTitle").textContent = login ? "Welcome back" : "Create your account";
-  document.getElementById("authSub").textContent = login ? "Log in to track orders and checkout faster." : "Join e-Global for exclusive deals and faster checkout.";
+const products = [
+ {id:"soundpro-x1",name:"SoundPro X1",detail:"Wireless Earbuds",price:19500,image:"images/headphones.webp",badge:"NEW"},
+ {id:"pouches",name:"Premium Pouches",detail:"Smartphone Accessories",price:12500,image:"images/speaker.webp",badge:"POPULAR"},
+ {id:"boommate",name:"BoomMate",detail:"Portable Bluetooth Speaker",price:45000,image:"images/speaker.webp",badge:"SALE"},
+ {id:"flagship-phones",name:"Flagship Phones",detail:"Samsung • iPhone • Pixel",price:850000,image:"images/phones3.webp",badge:"HOT"}
+];
+const money = n => new Intl.NumberFormat("en-NG",{style:"currency",currency:"NGN",maximumFractionDigits:0}).format(n);
+const toast = msg => {const t=document.getElementById("toast");t.textContent=msg;t.classList.remove("opacity-0");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.add("opacity-0"),2800)};
+const showErr=(id,msg)=>{const el=document.getElementById(id);el.textContent=msg;el.classList.toggle("hidden",!msg)};
+const validEmail=v=>/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v);
+let cart={}; try{cart=JSON.parse(localStorage.getItem("eg_cart"))||{}}catch{}
+Object.keys(cart).forEach(k=>{if(!products.some(p=>p.id===k)||!Number.isInteger(cart[k])||cart[k]<1)delete cart[k]});
+const cartOverlay=document.getElementById("cartOverlay");
+const productById=id=>products.find(p=>p.id===id);
+function renderProducts(){
+ document.getElementById("prodGrid").innerHTML=products.map(p=>`
+ <article class="flex flex-col overflow-hidden rounded-2xl bg-slate-50 p-4">
+  <div class="relative flex h-40 items-center justify-center"><span class="absolute left-0 top-0 rounded bg-orange-500 px-2 py-1 text-[9px] font-extrabold text-black">${p.badge}</span><img src="${p.image}" alt="${p.name}" class="h-32 w-full object-contain"></div>
+  <h3 class="mt-3 text-sm font-bold">${p.name}</h3><p class="mt-1 text-xs text-slate-500">${p.detail}</p><p class="mb-3 mt-2 font-extrabold">${money(p.price)}</p>
+  <button data-add="${p.id}" class="mt-auto rounded-md bg-orange-500 py-2.5 text-xs font-bold text-black hover:bg-orange-400">🛒 Add to Cart</button>
+ </article>`).join("");
 }
-function openAuth(t) {
-  setTab(t || "login");
-  modal.classList.remove("hidden"); modal.classList.add("flex");
-  requestAnimationFrame(() => { modal.classList.remove("opacity-0"); card.classList.remove("scale-95"); });
+function renderCart(){
+ const ids=Object.keys(cart),count=ids.reduce((s,id)=>s+cart[id],0),total=ids.reduce((s,id)=>s+productById(id).price*cart[id],0);
+ document.getElementById("cartCount").textContent=count;
+ document.getElementById("cartEmpty").classList.toggle("hidden",count>0);
+ document.getElementById("cartFoot").classList.toggle("hidden",count===0);
+ document.getElementById("cartTotal").textContent=money(total);
+ document.getElementById("cartShip").textContent="Delivery fee, if applicable, will be confirmed before dispatch.";
+ document.getElementById("cartList").innerHTML=ids.map(id=>{const p=productById(id);return `<div class="flex items-center gap-3 border-b py-3"><img src="${p.image}" alt="" class="h-14 w-14 object-contain"><div class="min-w-0 flex-1"><p class="truncate text-sm font-bold">${p.name}</p><p class="text-xs text-slate-500">${money(p.price)}</p><div class="mt-2 flex items-center gap-3 text-sm"><button data-action="dec" data-id="${id}">−</button><span>${cart[id]}</span><button data-action="inc" data-id="${id}">+</button></div></div><button data-action="remove" data-id="${id}" class="text-xs text-red-500">Remove</button></div>`}).join("");
+ localStorage.setItem("eg_cart",JSON.stringify(cart));
 }
-function closeAuth() {
-  modal.classList.add("opacity-0"); card.classList.add("scale-95");
-  setTimeout(() => { modal.classList.add("hidden"); modal.classList.remove("flex"); }, 200);
-}
-function toast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.remove("opacity-0", "translate-y-4");
-  setTimeout(() => t.classList.add("opacity-0", "translate-y-4"), 2600);
-}
-const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-function showErr(id, msg) {
-  const e = document.getElementById(id);
-  e.textContent = msg; e.classList.toggle("hidden", !msg);
-}
-function signedIn(name, quiet) {
-  loggedIn = true;
-  closeAuth();
-  const b = document.getElementById("userBtn");
-  const s = document.createElement("span");
-  s.className = "flex h-7 w-7 items-center justify-center rounded-full bg-[#f97316] text-sm font-bold text-[#0b0b0f]";
-  s.textContent = name.charAt(0).toUpperCase();
-  b.replaceChildren(s);
-  if (!quiet) toast("Welcome, " + name + "!");
-}
-let loggedIn = false, armed = false;
-document.getElementById("userBtn").onclick = async () => {
-  if (!loggedIn) return openAuth("login");
-  if (!armed) { armed = true; toast("Tap your avatar again to log out"); return setTimeout(() => { armed = false; }, 3000); }
-  armed = false;
-  if (sb) await sb.auth.signOut();
-  loggedIn = false;
-  document.getElementById("userBtn").textContent = "👤";
-  toast("You’ve been logged out");
-};
-if (sb) sb.auth.getSession().then(({ data }) => { if (data.session) signedIn(nameOf(data.session.user), true); });
-document.getElementById("authClose").onclick = closeAuth;
-modal.onclick = e => { if (e.target === modal) closeAuth(); };
-document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.classList.contains("hidden")) closeAuth(); });
-document.getElementById("tabLogin").onclick = () => setTab("login");
-document.getElementById("tabSignup").onclick = () => setTab("signup");
-document.querySelectorAll("[data-goto]").forEach(b => b.onclick = () => setTab(b.dataset.goto));
-document.querySelectorAll("[data-pw]").forEach(b => b.onclick = () => {
-  const i = b.previousElementSibling;
-  i.type = i.type === "password" ? "text" : "password";
-  b.textContent = i.type === "password" ? "Show" : "Hide";
-});
-document.getElementById("loginForm").onsubmit = async e => {
-  e.preventDefault();
-  const em = e.target.email.value.trim(), pw = e.target.password.value;
-  if (!okMail(em)) return showErr("loginErr", "Enter a valid email address.");
-  if (pw.length < 6) return showErr("loginErr", "Password must be at least 6 characters.");
-  showErr("loginErr", "");
-  if (!sb) { e.target.reset(); return signedIn(em.split("@")[0]); }
-  const { data, error } = await sb.auth.signInWithPassword({ email: em, password: pw });
-  if (error) return showErr("loginErr", error.message);
-  e.target.reset(); signedIn(nameOf(data.user));
-};
+document.getElementById("prodGrid").addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(!b)return;cart[b.dataset.add]=(cart[b.dataset.add]||0)+1;renderCart();toast("Added to cart")});
+document.getElementById("cartList").addEventListener("click",e=>{const b=e.target.closest("[data-action]");if(!b)return;const id=b.dataset.id;if(b.dataset.action==="inc")cart[id]++;if(b.dataset.action==="dec"){cart[id]--;if(cart[id]<=0)delete cart[id]}if(b.dataset.action==="remove")delete cart[id];renderCart()});
+document.getElementById("cartBtn").onclick=()=>cartOverlay.classList.replace("hidden","flex");
+function closeCart(){cartOverlay.classList.add("hidden");cartOverlay.classList.remove("flex")}
+document.getElementById("cartClose").onclick=closeCart;cartOverlay.addEventListener("click",e=>{if(e.target===cartOverlay)closeCart()});
+document.getElementById("clearCart").onclick=()=>{cart={};renderCart()};
 
-document.getElementById("signupForm").onsubmit = async e => {
-  e.preventDefault();
+/* Hero copy follows the matching product image. */
+const heroCopy=[
+ ["Enhance Your Gadget Style","Smart Tech. Better Everyday.","Discover innovative gadgets and accessories built for performance and style."],
+ ["See Every Detail","Capture More. Experience More.","Explore smartphones designed to bring your everyday moments into focus."],
+ ["Sound Without Limits","Your Music. Your Moment.","Enjoy rich, immersive audio with wireless headphones made for everyday listening."],
+ ["Premium Technology","Power Meets Design.","Discover smartphones that combine sleek design, reliable performance and everyday convenience."],
+ ["Experience Sound Differently","Turn Up the Sound. Feel Every Beat.","Discover powerful audio, deep bass and clear sound designed to make every moment sound better."],
+ ["Level Up Your Play","Play Without Limits.","Bring your favourite games to life with powerful consoles and immersive entertainment."],
+ ["Work Smarter","Power Your Next Big Idea.","Find laptops built for productivity, creativity and everyday performance."]
+];
+const slides=[...document.querySelectorAll("[data-slide]")],dots=document.getElementById("heroDots");
+dots.innerHTML=slides.map((_,i)=>`<button data-dot="${i}" aria-label="Show slide ${i+1}" class="h-1.5 rounded-full ${i===0?"w-6 bg-orange-400":"w-1.5 bg-white/50"}"></button>`).join("");
+let current=0,carouselTimer;
+function showSlide(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>{s.classList.toggle("opacity-100",i===current);s.classList.toggle("opacity-0",i!==current);s.classList.toggle("scale-100",i===current);s.classList.toggle("scale-90",i!==current)});document.getElementById("heroEyebrow").textContent=heroCopy[current][0];document.getElementById("heroTitle").textContent=heroCopy[current][1];document.getElementById("heroDescription").textContent=heroCopy[current][2];dots.querySelectorAll("button").forEach((d,i)=>{d.className="h-1.5 rounded-full "+(i===current?"w-6 bg-orange-400":"w-1.5 bg-white/50")})}
+function startCarousel(){clearInterval(carouselTimer);carouselTimer=setInterval(()=>showSlide(current+1),3800)}
+dots.addEventListener("click",e=>{const b=e.target.closest("[data-dot]");if(b){showSlide(Number(b.dataset.dot));startCarousel()}});showSlide(0);startCarousel();
 
-  const f = e.target, nm = f.fullname.value.trim(), em = f.email.value.trim();
+/* Mobile navigation and reveal animation */
+document.getElementById("menuBtn").onclick=()=>document.getElementById("mobileMenu").classList.toggle("hidden");
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(x=>{if(x.isIntersecting){x.target.classList.remove("opacity-0","translate-y-6");revealObserver.unobserve(x.target)}}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach(el=>{el.classList.add("opacity-0","translate-y-6","transition","duration-700");revealObserver.observe(el)});
 
-  if (nm.length < 2) return showErr("signupErr", "Please enter your full name.");
-  if (!okMail(em)) return showErr("signupErr", "Enter a valid email address.");
-  if (f.password.value.length < 6) return showErr("signupErr", "Password must be at least 6 characters.");
-  if (f.password.value !== f.confirm.value) return showErr("signupErr", "Passwords do not match.");
-  if (!f.terms.checked) return showErr("signupErr", "Please accept the terms to continue.");
+/* Authentication */
+const authModal=document.getElementById("authModal"),userBtn=document.getElementById("userBtn"),accountMenu=document.getElementById("accountMenu");
+let currentUser=null;
+function setAuthTab(tab){const login=tab==="login";document.getElementById("loginForm").classList.toggle("hidden",!login);document.getElementById("signupForm").classList.toggle("hidden",login);document.getElementById("authTitle").textContent=login?"Welcome back":"Create your account";document.getElementById("authSub").textContent=login?"Log in to your e-Global account.":"Create an account to shop with e-Global";document.getElementById("tabLogin").className="flex-1 rounded-lg py-2 text-sm font-bold "+(login?"bg-orange-500":"");document.getElementById("tabSignup").className="flex-1 rounded-lg py-2 text-sm font-bold "+(!login?"bg-orange-500":"")}
+function openAuth(tab="login"){accountMenu.classList.add("hidden");setAuthTab(tab);authModal.classList.remove("hidden");authModal.classList.add("flex")}
+function closeAuth(){authModal.classList.add("hidden");authModal.classList.remove("flex")}
+document.getElementById("authClose").onclick=closeAuth;authModal.addEventListener("click",e=>{if(e.target===authModal)closeAuth()});
+document.getElementById("tabLogin").onclick=()=>setAuthTab("login");document.getElementById("tabSignup").onclick=()=>setAuthTab("signup");
+function updateUser(user){currentUser=user;userBtn.textContent=user?(user.user_metadata?.full_name||user.email||"U").charAt(0).toUpperCase():"👤";userBtn.className=user?"flex h-8 w-8 items-center justify-center rounded-full bg-orange-500 text-sm font-bold text-black":"rounded-full";document.getElementById("accountName").textContent=user?(user.user_metadata?.full_name||user.email):"Your account"}
+userBtn.onclick=()=>{if(!currentUser)return openAuth("login");accountMenu.classList.toggle("hidden")};
+document.addEventListener("click",e=>{if(!accountMenu.contains(e.target)&&e.target!==userBtn)accountMenu.classList.add("hidden")});
+document.getElementById("logoutBtn").onclick=async()=>{const {error}=await sb.auth.signOut({scope:"local"});if(error)return toast(error.message);updateUser(null);accountMenu.classList.add("hidden");toast("You have been logged out")};
+document.getElementById("loginForm").onsubmit=async e=>{e.preventDefault();if(!sb)return showErr("loginErr","Authentication service is unavailable. Refresh and try again.");const f=e.target, email=f.email.value.trim(),password=f.password.value;showErr("loginErr","");const {data,error}=await sb.auth.signInWithPassword({email,password});if(error)return showErr("loginErr",error.message);updateUser(data.user);f.reset();closeAuth();toast("Welcome back")};
+document.getElementById("signupForm").onsubmit=async e=>{e.preventDefault();const f=e.target;if(!sb)return showErr("signupErr","Authentication service is unavailable. Refresh and try again.");if(f.password.value!==f.confirm.value)return showErr("signupErr","Your passwords do not match.");showErr("signupErr","");const {data,error}=await sb.auth.signUp({email:f.email.value.trim(),password:f.password.value,options:{data:{full_name:f.fullname.value.trim()},emailRedirectTo:location.origin}});if(error)return showErr("signupErr",error.message);f.reset();closeAuth();if(data.session){updateUser(data.user);toast("Your account has been created")}else toast("Check your email to confirm your account")};
+if(sb){sb.auth.getSession().then(({data})=>updateUser(data.session?.user||null));sb.auth.onAuthStateChange((_event,session)=>updateUser(session?.user||null))}
 
-  showErr("signupErr", "");
-
-  if (!sb) {
-    f.reset();
-    return signedIn(nm.split(" ")[0]);
-  }
-
-  const { data, error } = await sb.auth.signUp({
-    email: em,
-    password: f.password.value,
-    options: {
-      data: { full_name: nm },
-      emailRedirectTo: "https://miracle-raphael.github.io/Gadget-website/"
-    }
-  });
-
-  if (error) return showErr("signupErr", error.message);
-
-  f.reset();
-
-  if (data.session) {
-    signedIn(nm.split(" ")[0]);
-  } else {
-    closeAuth();
-    toast("Check your email to confirm your account.");
-  }
+/* Paystack checkout: secret key stays inside the Supabase Edge Function. */
+document.getElementById("checkoutBtn").onclick=async()=>{
+ const items=Object.entries(cart).map(([id,qty])=>({id,qty}));
+ if(!items.length)return toast("Your cart is empty");
+ if(!sb)return toast("Payment service is unavailable. Please try again later.");
+ const email=currentUser?.email;
+ if(!email){closeCart();openAuth("login");return toast("Please log in before checkout")}
+ const btn=document.getElementById("checkoutBtn");btn.disabled=true;btn.textContent="Preparing secure checkout…";
+ try{
+  const {data:{session}}=await sb.auth.getSession();
+  const response=await fetch(PAYMENT_FUNCTION_URL,{method:"POST",headers:{"Content-Type":"application/json","Authorization":`Bearer ${session.access_token}`,"apikey":SUPABASE_ANON_KEY},body:JSON.stringify({action:"initialize",items})});
+  const result=await response.json();
+  if(!response.ok)throw new Error(result.error||"Could not start payment");
+  if(!result.authorization_url)throw new Error("Payment link was not returned");
+  location.href=result.authorization_url;
+ }catch(err){toast(err.message||"Payment could not be started")}finally{btn.disabled=false;btn.textContent="Proceed to Payment"}
 };
 
-// ===== Hero gadget carousel =====
-const slides = [...document.querySelectorAll("[data-slide]")];
-const dots = [...document.querySelectorAll("[data-dot]")];
-const sBase = "absolute inset-0 flex flex-col items-center justify-center pb-8 transition duration-700 ease-in-out ";
-const sState = {
-  wait: "opacity-0 scale-50 translate-y-8 rotate-12",
-  on:   "opacity-100 scale-100 translate-y-0 rotate-0",
-  off:  "opacity-0 scale-75 -translate-y-8 -rotate-12"
-};
-const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let cur = -1, timer;
-function showSlide(n) {
-  slides.forEach((s, i) => { s.className = sBase + (i === n ? sState.on : (i === cur ? sState.off : sState.wait)); });
-  dots.forEach((d, i) => { d.className = "h-1.5 rounded-full transition-all duration-500 " + (i === n ? "w-6 bg-orange-400" : "w-1.5 bg-white/50"); });
-  cur = n;
-}
-function startCarousel() {
-  if (reduced) return;
-  clearInterval(timer);
-  timer = setInterval(() => showSlide((cur + 1) % slides.length), 3500);
-}
-setTimeout(() => { showSlide(0); startCarousel(); }, 600);
-dots.forEach((d, i) => d.onclick = () => { showSlide(i); startCarousel(); });
+/* Payment return: verify with backend before emptying cart or showing success. */
+(async()=>{
+ const params=new URLSearchParams(location.search),reference=params.get("reference");
+ if(!reference)return;
+ history.replaceState({},document.title,location.pathname);
+ if(!sb){toast("Unable to verify payment. Contact support.");return}
+ try{
+  const {data:{session}}=await sb.auth.getSession();if(!session)throw new Error("Please log in to verify this order.");
+  const res=await fetch(PAYMENT_FUNCTION_URL,{method:"POST",headers:{"Content-Type":"application/json","Authorization":`Bearer ${session.access_token}`,"apikey":SUPABASE_ANON_KEY},body:JSON.stringify({action:"verify",reference})});
+  const result=await res.json();if(!res.ok||result.status!=="success")throw new Error(result.error||"Payment was not confirmed.");
+  cart={};renderCart();toast("Payment confirmed. Thank you for your order!");
+ }catch(err){toast(err.message)}
+})();
 
-// 3D feel: gadgets float and tilt toward the cursor
-const stage = document.getElementById("heroStage");
-const floaters = [...document.querySelectorAll("[data-float]")];
-const pars = [...document.querySelectorAll("[data-par]")];
-let tx = 0, ty = 0, rx = 0, ry = 0, hovering = false;
-stage.onmousemove = e => {
-  const r = stage.getBoundingClientRect();
-  tx = ((e.clientX - r.left) / r.width - 0.5) * 36;
-  ty = -((e.clientY - r.top) / r.height - 0.5) * 18;
-  hovering = true;
-};
-stage.onmouseleave = () => { hovering = false; };
-function tick(t) {
-  const goalY = hovering ? tx : Math.sin(t / 1600) * 16;
-  const goalX = hovering ? ty : Math.cos(t / 2100) * 5;
-  ry += (goalY - ry) * 0.07; rx += (goalX - rx) * 0.07;
-  const bob = Math.sin(t / 850) * 8;
-  pars.forEach(el => { const d = +el.dataset.par; el.style.transform = `translate(${ry * d / 25}px, ${-rx * d / 25}px)`; });
-  floaters.forEach(f => { f.style.transform = `perspective(900px) rotateY(${ry}deg) rotateX(${rx}deg) translateY(${bob}px)`; });
-  requestAnimationFrame(tick);
-}
-if (!reduced) requestAnimationFrame(tick);
-
-// Save each order to Supabase when the customer taps "Order on WhatsApp"
-document.getElementById("checkoutBtn").addEventListener("click", async () => {
-  const ids = Object.keys(cart);
-  if (!sb || !ids.length) return;
-  const items = ids.map(k => ({ name: prods[k][0], detail: prods[k][1], price: priceOf(k), qty: cart[k] }));
-  const total = items.reduce((s, x) => s + x.price * x.qty, 0);
-  const { data: { session } } = await sb.auth.getSession();
-  const { error } = await sb.from("orders").insert({ items, total, user_id: session ? session.user.id : null });
-  if (error) console.error("Order not saved:", error.message);
-});
-
-// Newsletter
-document.getElementById("nlBtn").onclick = async () => {
-  const i = document.getElementById("nlEmail"), btn = document.getElementById("nlBtn");
-  const em = i.value.trim().toLowerCase();
-  if (!okMail(em)) return toast("Please enter a valid email address.");
-  if (!sb) { i.value = ""; return toast("Thanks for subscribing!"); }
-  btn.disabled = true;
-  const { error } = await sb.from("newsletter_subscribers").insert({ email: em });
-  btn.disabled = false;
-  if (error && error.code === "23505") { i.value = ""; return toast("You’re already subscribed!"); }
-  if (error) return toast("Something went wrong. Please try again.");
-  i.value = ""; toast("Thanks for subscribing!");
-};
-
-// Reveal on scroll
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.remove("opacity-0", "translate-y-8");
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll("[data-r]").forEach((el, i) => {
-  el.style.transitionDelay = (i % 4) * 100 + "ms";
-  io.observe(el);
-});
+/* Newsletter: create newsletter_subscribers table and its insert policy in Supabase before enabling. */
+document.getElementById("nlBtn").onclick=async()=>{const input=document.getElementById("nlEmail"),email=input.value.trim().toLowerCase();if(!validEmail(email))return toast("Enter a valid email address.");if(!sb)return toast("Newsletter service is unavailable.");const btn=document.getElementById("nlBtn");btn.disabled=true;const {error}=await sb.from("newsletter_subscribers").insert({email});btn.disabled=false;if(error?.code==="23505"){input.value="";return toast("You are already subscribed.")}if(error)return toast("Subscription failed. Please try again.");input.value="";toast("Thanks for subscribing!")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();closeAuth();accountMenu.classList.add("hidden")}});
+renderProducts();renderCart();
 </script>
 </body>
 </html>
